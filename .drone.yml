@@ -1,23 +1,11 @@
 kind: pipeline
 name: default
-type: digitalocean
+type: docker
 steps:
-  - name: publish
-    image: plugins/gh-pages
-
-workspace:
-  base: /srv/drone-demo
-  path: .
-
-pipeline:
-  build:
+  - name: backend
     image: golang:alpine
-    # pull: true
-    environment:
-      - KEY=VALUE
-    secrets: [key1, key2]
+    pull: true
     commands:
-      - echo $$KEY
       - pwd
       - ls
       - CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
