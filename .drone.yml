@@ -1,8 +1,7 @@
-name: default
+name: drone-demo
 
 kind: pipeline
 type: docker
-
 steps:
   - name: backend
     image: golang:alpine
