@@ -5,6 +5,7 @@ type: docker
 steps:
   - name: backend
     image: golang:alpine
+    commands:
       - pwd
       - ls
       - CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
