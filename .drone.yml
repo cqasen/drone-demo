@@ -1,6 +1,7 @@
 kind: pipeline
 name: default
 type: docker
+token: 8sWxqUzp0MPl6U9cgxMU8JZbfEKBxH9J
 steps:
   - name: backend
     image: golang:alpine
