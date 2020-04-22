@@ -1,9 +1,12 @@
 kind: pipeline
-name: default
-type: docker
-token: 8sWxqUzp0MPl6U9cgxMU8JZbfEKBxH9J
+name: drone
+
+workspace:
+  base: /srv/drone-demo
+  path: .
+
 steps:
-  - name: backend
+  - name: build
     image: golang:alpine
     pull: true
     commands:
