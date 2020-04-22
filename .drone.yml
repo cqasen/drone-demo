@@ -1,15 +1,11 @@
-kind: pipeline
-name: drone
+name: default
 
-workspace:
-  base: /srv/drone-demo
-  path: .
+kind: pipeline
+type: docker
 
 steps:
-  - name: build
+  - name: backend
     image: golang:alpine
-    pull: true
-    commands:
       - pwd
       - ls
       - CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
