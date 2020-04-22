@@ -2,7 +2,9 @@ kind: pipeline
 name: default
 type: digitalocean
 steps:
-  -
+  - name: publish
+    image: plugins/gh-pages
+
 workspace:
   base: /srv/drone-demo
   path: .
