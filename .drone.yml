@@ -7,17 +7,15 @@ workspace:
   path: src/github.com/cqasen/drone-demo
 
 steps:
-  - name: build
-    image: golang:alpine
+  - name: docker
+    image: plugins/docker
+    environment:
+      GO111MODULE: on
+      GOPROXY: https://mirrors.aliyun.com/goproxy/
+    settings:
+      repo: drone-demo
+      dockerfile: ./Dockerfile
     commands:
       - pwd
       - go env
-      - go version
-      - go build
-
-  - name: docker
-    image: plugins/docker
-    settings:
-      repo: drone-demo
-    commands:
-      - pwd
+      - go run app.go
