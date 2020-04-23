@@ -15,7 +15,6 @@ steps:
       - pwd
       - go env
       - go version
-      - go mod init
       - go mod download
       - go run app.go
 
