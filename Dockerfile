@@ -1,8 +1,5 @@
 # build
-FROM golang:1.13-alpine
-
-ARG app_env
-ENV APP_ENV $app_env
+FROM golang:alpine
 
 WORKDIR /go/src/app
 COPY . .
