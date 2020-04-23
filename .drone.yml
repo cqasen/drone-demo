@@ -25,6 +25,7 @@ steps:
       auto_tag: true
       dockerfile: ./Dockerfile
       debug: true
+      dry_run: true
     commands:
       - pwd
       - ls -al
