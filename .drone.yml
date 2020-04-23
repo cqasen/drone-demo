@@ -25,5 +25,5 @@ steps:
       dockerfile: ./Dockerfile
     commands:
       - pwd
-      - docker build --rm=true -f ./Dockerfile -t golang:alpine ./
+      - docker build -t golang:alpine ./
 
