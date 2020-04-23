@@ -28,3 +28,9 @@ steps:
       - pwd
       - go env
       - go run app.go
+
+  - name: deploy
+    image: drone-demo
+    commands:
+      - pwd
+      - docker ps -a
