@@ -2,11 +2,20 @@ name: drone-demo
 
 kind: pipeline
 type: docker
+workspace:
+  base: /go
+  path: src/github.com/cqasen/drone-demo
+
 steps:
-  - name: backend
+  - name: build
     image: golang:alpine
     commands:
       - pwd
-      - ls
-      - CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
-      - ./app
+      - go env
+      - go version
+      - go build
+
+  - name: docker
+    image: plugins/docker
+    settings:
+      repo: drone-demo
