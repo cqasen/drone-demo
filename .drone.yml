@@ -19,9 +19,6 @@ steps:
 
   - name: publish
     image: plugins/docker
-    volumes:
-      - name: docker         # 挂载下面定义的Volumn
-        path: /var/run/docker.sock   # 与宿主机用同一docker
     settings:
       repo: cqasen/demo
       dockerfile: ./Dockerfile
@@ -42,7 +39,7 @@ steps:
         from_secret: ssh_password
       script:
         - docker rmi -f cqasen/demo
-        - docker login -u ${{docker_username}} -p ${{docker_password}}
+        - docker login -u "$docker_username" -p "$docker_password"
         - echo "login docker"
         - echo "login success, pulling..."
         - docker pull cqasen/demo:latest
