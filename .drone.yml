@@ -44,5 +44,5 @@ steps:
         - echo "login success, pulling..."
         - docker pull cqasen/demo:latest
         - echo "image running"
-        - docker run -p 8088:8088 -d cqasen/demo:latest
+        - docker run -n demo  -p 8088:8088 -d cqasen/demo:latest
         - echo "run success"
