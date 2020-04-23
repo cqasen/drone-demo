@@ -20,7 +20,7 @@ steps:
   - name: publish
     image: plugins/docker
     settings:
-      repo: drone-demo
+      repo: cqasen/demo
       dockerfile: ./Dockerfile
       tags: latest
       username:
@@ -38,10 +38,10 @@ steps:
       password:
         from_secret: ssh_password
       script:
-        - docker rmi -f drone-demo
+        - docker rmi -f cqasen/demo
         - echo "login docker"
         - echo "login success, pulling..."
-        - docker pull drone-demo:latest
+        - docker pull cqasen/demo:latest
         - echo "image running"
-        - docker run -p 8088:8088 -d drone-demo
+        - docker run -p 8088:8088 -d cqasen/demo
         - echo "run success"
