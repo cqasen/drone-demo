@@ -30,7 +30,8 @@ steps:
       - pwd
       - ls -al
       - docker -v
-      - docker build -t drone-demo  ./
+      - nohup dockerd &
+      - docker build -t drone-demo:$${DRONE_TAG}  ./
     when:
       event: [ push, tag ]
       branch: master
