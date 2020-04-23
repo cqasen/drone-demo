@@ -15,7 +15,9 @@ steps:
       - pwd
       - go env
       - go version
-      - go build .
+      - go mod init
+      - go mod download
+      - go run app.go
 
   - name: docker
     image: plugins/docker
