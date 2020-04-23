@@ -1,5 +1,4 @@
 name: drone-demo
-
 kind: pipeline
 type: docker
 workspace:
