@@ -28,7 +28,6 @@ steps:
     commands:
       - pwd
       - ls -al
-      - docker -v
     when:
       event: [ push, tag ]
       branch: master
