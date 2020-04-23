@@ -30,9 +30,19 @@ steps:
       - pwd
       - ls -al
       - docker -v
-      - nohup dockerd &
-      - docker build -t drone-demo:$${DRONE_TAG}  ./
     when:
       event: [ push, tag ]
       branch: master
-    privileged: true
+
+  - name: deploy
+    image: appleboy/drone-ssh
+    pull: true
+    settings:
+      script:
+        - docker rmi -f drone-demo
+        - echo "login docker"
+        - echo "login success, pulling..."
+        - docker pull drone-demo:latest
+        - echo "image running"
+        - docker run -p 8088:8088 -d drone-demo
+        - echo "run success"
