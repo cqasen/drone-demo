@@ -26,4 +26,5 @@ steps:
       debug: true
     commands:
       - pwd
+      - ls -al
 
