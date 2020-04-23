@@ -16,7 +16,6 @@ steps:
       - go env
       - go version
       - go mod download
-      - go run app.go
 
   - name: publish
     image: plugins/docker
