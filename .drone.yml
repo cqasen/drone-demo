@@ -25,4 +25,3 @@ steps:
       dockerfile: ./Dockerfile
     commands:
       - pwd
-      - docker pull drone-demo
