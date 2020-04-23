@@ -1,24 +1,25 @@
 name: drone-demo
 kind: pipeline
 type: docker
-workspace:
-  base: /go
-  path: src/github.com/cqasen/drone-demo
+#workspace:
+#  base: /go
+#  path: src/github.com/cqasen/drone-demo
 
 steps:
-  - name: build
-    image: golang:alpine
-    environment:
-      GO111MODULE: on
-      GOPROXY: https://mirrors.aliyun.com/goproxy/
-    commands:
-      - pwd
-      - go env
-      - go version
-      - go mod download
+  #  - name: build
+  #    image: golang:alpine
+  #    environment:
+  #      GO111MODULE: on
+  #      GOPROXY: https://mirrors.aliyun.com/goproxy/
+  #    commands:
+  #      - pwd
+  #      - go env
+  #      - go version
+  #      - go mod download
 
-  - name: publish
+  - name: docker
     image: plugins/docker
+    pull: if-not-exists
     settings:
       repo: cqasen/demo
       dockerfile: ./Dockerfile
