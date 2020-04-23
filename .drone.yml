@@ -23,6 +23,10 @@ steps:
       repo: drone-demo
       dockerfile: ./Dockerfile
       tags: latest
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
 
   - name: deploy
     image: appleboy/drone-ssh
