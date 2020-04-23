@@ -14,6 +14,7 @@ steps:
       GOPROXY: https://mirrors.aliyun.com/goproxy/
     settings:
       repo: drone-demo
+      auto_tag: true
       dockerfile: ./Dockerfile
     commands:
       - pwd

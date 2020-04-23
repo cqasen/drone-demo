@@ -1,7 +1,7 @@
 # build
 FROM golang:alpine
 
-WORKDIR /go/src/app
+WORKDIR /go/src/github.com/cqasen/drone-demo
 COPY . .
 
 # set go mod proxy
