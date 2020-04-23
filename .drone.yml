@@ -9,6 +9,9 @@ workspace:
 steps:
   - name: build
     image: golang:alpine
+    environment:
+      GO111MODULE: on
+      GOPROXY: https://mirrors.aliyun.com/goproxy/
     commands:
       - pwd
       - go env
@@ -16,9 +19,6 @@ steps:
 
   - name: docker
     image: plugins/docker
-    environment:
-      GO111MODULE: on
-      GOPROXY: https://mirrors.aliyun.com/goproxy/
     settings:
       repo: drone-demo
       auto_tag: true
