@@ -26,4 +26,6 @@ steps:
     commands:
       - pwd
       - docker build -t golang:alpine ./
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
