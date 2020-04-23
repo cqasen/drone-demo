@@ -18,21 +18,12 @@ steps:
       - go mod download
       - go run app.go
 
-  - name: docker
+  - name: publish
     image: plugins/docker
-    pull: true
     settings:
       repo: drone-demo
-      auto_tag: true
       dockerfile: ./Dockerfile
-      debug: true
-      dry_run: true
-    commands:
-      - pwd
-      - ls -al
-    when:
-      event: [ push, tag ]
-      branch: master
+      tags: latest
 
   - name: deploy
     image: appleboy/drone-ssh
