@@ -29,6 +29,7 @@ steps:
     commands:
       - pwd
       - ls -al
+      - docker build -t drone-demo  ./
     when:
       event: [ push, tag ]
       branch: master
