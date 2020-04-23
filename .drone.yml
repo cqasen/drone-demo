@@ -30,5 +30,5 @@ steps:
       - ls -al
     when:
       event: [ push, tag ]
-      local: false
+      branch: master
 
