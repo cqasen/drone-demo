@@ -19,3 +19,5 @@ steps:
     image: plugins/docker
     settings:
       repo: drone-demo
+    commands:
+      - pwd
