@@ -38,6 +38,8 @@ steps:
     image: appleboy/drone-ssh
     pull: true
     settings:
+      host: example.me
+      user: root
       script:
         - docker rmi -f drone-demo
         - echo "login docker"
