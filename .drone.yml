@@ -19,6 +19,7 @@ steps:
 
   - name: docker
     image: plugins/docker
+    pull: true
     settings:
       repo: drone-demo
       auto_tag: true
@@ -27,4 +28,7 @@ steps:
     commands:
       - pwd
       - ls -al
+    when:
+      event: [ push, tag ]
+      local: false
 
