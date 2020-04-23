@@ -13,7 +13,6 @@ steps:
       - pwd
       - go env
       - go version
-      - go build
 
   - name: docker
     image: plugins/docker
@@ -26,9 +25,4 @@ steps:
       dockerfile: ./Dockerfile
     commands:
       - pwd
-
-  - name: deploy
-    image: drone-demo
-    commands:
-      - pwd
-      - docker ps -a
+      - docker pull drone-demo
