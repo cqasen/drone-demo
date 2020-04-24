@@ -1,20 +1,16 @@
 package router
 
 import (
+	"github.com/cqasen/drone-demo/http/handler"
 	"github.com/ebar-go/ego/http/middleware"
-	"github.com/ebar-go/ego/http/response"
 	"github.com/gin-gonic/gin"
 )
 
-func InitRouter(router * gin.Engine)  {
+func InitRouter(router *gin.Engine) {
 	router.Use(middleware.CORS)
 	router.Use(middleware.RequestLog)
-	router.Use(middleware.Recover)
+	router.Use(handler.Recover)
+	router.StaticFile("favicon.ico", "./resources/favicon.ico")
 
-	router.GET("/", func(context *gin.Context) {
-		data := response.Data{
-			"tips": "Hello World!",
-		}
-		response.WrapContext(context).Success(data)
-	})
+	router.GET("/", handler.IndexHandler)
 }
