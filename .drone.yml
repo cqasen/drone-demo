@@ -41,8 +41,9 @@ steps:
       password:
         from_secret: ssh_password
       script:
+        - ls -al
         - docker rmi -f cqasen/demo
         - docker login -u "$docker_username" -p "$docker_password"
         - docker pull cqasen/demo:latest
-        - sh docker.sh run --name demo --replicas 1 --publish 8088:8080 --container cqasen/demo --tag latest
+        - docker service create --name demo --replicas 1 -t --publish 8088:8080 cqasen/demo:latest
         - echo "run success"
