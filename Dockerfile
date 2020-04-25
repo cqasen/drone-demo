@@ -17,9 +17,9 @@ WORKDIR /go/release
 
 ADD . .
 
-RUN GOOS=linux CGO_ENABLED=0 go build -ldflags="-s -w" -installsuffix cgo -o app main.go
+#RUN GOOS=linux CGO_ENABLED=0 go build -ldflags="-s -w" -installsuffix cgo -o app main.go
 
 ## 运行镜像
 FROM scratch as prod
 COPY --from=builder /go/release/app /
-CMD ["/app"]
+CMD ["go","run","main.go"]
