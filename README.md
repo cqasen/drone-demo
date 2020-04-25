@@ -1,2 +1,2 @@
 # drone-demo
-使用Drone发布
+Drone+docker+swarm
