@@ -1,5 +1,7 @@
 # build
 FROM golang:alpine
+ARG app_env
+ENV APP_ENV $app_env
 
 WORKDIR /go/src/github.com/cqasen/drone-demo
 COPY . .

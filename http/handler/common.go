@@ -17,12 +17,12 @@ func IndexHandler(ctx *gin.Context) {
 
 func Recover(ctx *gin.Context) {
 	defer func(traceId string) {
-		if r := recover(); r != nil {
+		if err := recover(); err != nil {
 			trace.SetTraceId(traceId)
 			defer trace.DeleteTraceId()
 			utils.Debug(utils.Trace())
 			wrapper := response.WrapContext(ctx)
-			if err, ok := r.(*errors.Error); ok {
+			if err, ok := err.(*errors.Error); ok {
 				wrapper.Error(err.Code, err.Message)
 			} else {
 				wrapper.Error(500, "system error")

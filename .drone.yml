@@ -20,6 +20,9 @@ steps:
   - name: docker
     image: plugins/docker
     pull: if-not-exists
+    environment:
+      app_env:
+        from_secret: app_env
     settings:
       repo: cqasen/demo
       dockerfile: ./Dockerfile
