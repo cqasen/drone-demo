@@ -45,7 +45,5 @@ steps:
         - docker rmi -f cqasen/demo
         - docker login -u "$docker_username" -p "$docker_password"
         - docker pull cqasen/demo:latest
-        - CONTAINER_ID=`docker ps -a | grep demo | awk '{print $1}'`
-        - if [ -n "${CONTAINER_ID}" ];then docker stop ${CONTAINER_ID} && docker rm ${CONTAINER_ID} fi
-        - docker run --name demo  -p 8088:8080 -d cqasen/demo:latest
+        - sh docker.sh run --name demo --replicas 1 --publish 8088:8080 --container cqasen/demo --tag latest
         - echo "run success"
