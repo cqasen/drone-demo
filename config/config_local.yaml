@@ -1,5 +1,4 @@
 # Primary
-ENVIRONMENT: local
 SYSTEM_NAME: drone-demo
 LOG_LEVEL: debug
 LOG_PATH: /wwwlogs/
