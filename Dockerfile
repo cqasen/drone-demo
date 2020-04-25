@@ -9,7 +9,5 @@ ENV GOPROXY=https://mirrors.aliyun.com/goproxy/
 
 WORKDIR /go/release/app
 COPY . .
-ADD go.mod .
-ADD go.sum .
 RUN go mod download
 CMD ["go","run","main.go"]
