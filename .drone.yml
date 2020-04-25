@@ -45,5 +45,5 @@ steps:
         - docker rmi -f cqasen/demo
         - docker login -u "$docker_username" -p "$docker_password"
         - docker pull cqasen/demo:latest
-        - docker service create --name demo --replicas 1 -t --publish 8088:8080 cqasen/demo:latest
+        - docker service create --name demo --replicas 1 -t --publish 8088:8088 cqasen/demo:latest
         - echo "run success"
