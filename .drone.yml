@@ -41,7 +41,6 @@ steps:
       password:
         from_secret: ssh_password
       script:
-        - ls -al
         - docker rmi -f cqasen/demo
         - docker login -u "$docker_username" -p "$docker_password"
         - docker pull cqasen/demo:latest
