@@ -31,7 +31,7 @@ steps:
       password:
         from_secret: docker_password
 
-  - name: scp
+  - name: test
       image: appleboy/drone-scp
       pull: if-not-exists
       settings:
@@ -46,8 +46,6 @@ steps:
         secure: true
         target: /www/shell/${DRONE_REPO_NAME}-backend
         source: ./docker-compose2.yml
-
-
 
   - name: deploy
     image: appleboy/drone-ssh
