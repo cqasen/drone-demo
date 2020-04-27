@@ -1,0 +1,55 @@
+kind: pipeline
+type: docker
+name: demo
+
+steps:
+  - name: tag
+    image: registry.cn-hangzhou.aliyuncs.com/epet/alpine:latest
+    pull: if-not-exists
+    commands:
+      - echo -n 'proc_'`date +%m-%d_%H-%M-%S`,latest > .tags
+
+  - name: build
+    image: plugins/docker
+    pull: if-not-exists
+    settings:
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+      repo: registry-vpc.cn-hangzhou.aliyuncs.com/cqasen/${DRONE_REPO_NAME}-backend
+      registry: registry-vpc.cn-hangzhou.aliyuncs.com
+
+  - name: scp-yml
+    image: appleboy/drone-scp
+    pull: if-not-exists
+    settings:
+      host:
+        from_secret: host_proc_1
+      port:
+        from_secret: port_proc_1
+      username:
+        from_secret: ssh_username
+      password:
+        from_secret: ssh_password
+      secure: true
+      target: /www/shell/${DRONE_REPO_NAME}-backend
+      source: ./docker-compose.yml
+
+  - name: deploy
+    image: appleboy/drone-ssh
+    pull: if-not-exists
+    settings:
+      host:
+        from_secret: host_proc_1
+      port:
+        from_secret: port_proc_1
+      username:
+        from_secret: ssh_username
+      password:
+        from_secret: ssh_password
+      script:
+        - docker stop $(docker ps -a | grep ${DRONE_REPO_NAME}-backend | awk '{print $1 }')
+        - docker ps -a | grep  ${DRONE_REPO_NAME}-backend | awk '{print $1 }' | xargs docker rm
+        - docker images | grep  ${DRONE_REPO_NAME}-backend | awk '{print $3 }' | xargs docker rmi
+        - NAMESPACE=gott-haiji SERVICE=${DRONE_REPO_NAME}-backend INNER_PORT=9206 ip=172.11.11.110 docker-compose -f /www/shell/${DRONE_REPO_NAME}-backend/docker-compose.yml up -d --build

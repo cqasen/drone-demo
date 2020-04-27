@@ -10,7 +10,7 @@ import (
 	"log"
 )
 
-const ElasticsearchConnectEvent = "ELASTICSEARCH_CONNECT_EVENT"
+const ELASTICSEARCH_CONNECT_EVENT = "ELASTICSEARCH_CONNECT_EVENT"
 
 func Setup() {
 	listener := event.Listener{
@@ -19,8 +19,8 @@ func Setup() {
 			utils.FatalError("Elasticsearch Register", connectElasticsearch())
 		},
 	}
-	event.DefaultDispatcher().Register(ElasticsearchConnectEvent, listener)
-	_ = event.DefaultDispatcher().Trigger(ElasticsearchConnectEvent, nil)
+	event.DefaultDispatcher().Register(ELASTICSEARCH_CONNECT_EVENT, listener)
+	_ = event.DefaultDispatcher().Trigger(ELASTICSEARCH_CONNECT_EVENT, nil)
 }
 
 func connectElasticsearch() error {
