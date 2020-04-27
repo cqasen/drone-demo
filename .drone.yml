@@ -30,9 +30,22 @@ steps:
         from_secret: docker_username
       password:
         from_secret: docker_password
-    commands:
-      - ls -al
-      - echo ${DRONE_REPO_NAME}
+
+  - name: scp-yml
+      image: appleboy/drone-scp
+      pull: if-not-exists
+      settings:
+        host:
+          from_secret: host_proc_1
+        port:
+          from_secret: port_proc_1
+        username:
+          from_secret: ssh_username
+        password:
+          from_secret: ssh_password
+        secure: true
+        target: /www/shell/${DRONE_REPO_NAME}-backend
+        source: ./docker-compose2.yml
 
 
 
@@ -40,12 +53,16 @@ steps:
     image: appleboy/drone-ssh
     pull: if-not-exists
     settings:
-      host: 111.229.103.26
-      port: 22
-      username: root
-      password:
-        from_secret: ssh_password
+      host:
+        from_secret: host_proc_1
+        port:
+          from_secret: port_proc_1
+        username:
+          from_secret: ssh_username
+        password:
+          from_secret: ssh_password
       script:
+        - echo ${DRONE_REPO_NAME}
         - docker rmi -f cqasen/demo
         - docker login -u "$docker_username" -p "$docker_password"
         - docker pull cqasen/demo:latest
