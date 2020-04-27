@@ -31,7 +31,7 @@ steps:
       password:
         from_secret: docker_password
 
-  - name: scp-yml
+  - name: scp
       image: appleboy/drone-scp
       pull: if-not-exists
       settings:
