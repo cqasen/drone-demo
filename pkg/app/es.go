@@ -1,4 +1,4 @@
-package es
+package app
 
 import (
 	"context"
@@ -12,7 +12,8 @@ import (
 
 const ELASTICSEARCH_CONNECT_EVENT = "ELASTICSEARCH_CONNECT_EVENT"
 
-func Setup() {
+//创建Elasticsearch链接
+func SetElasticsearchContent() {
 	listener := event.Listener{
 		Async: false,
 		Handle: func(ev event.Event) {
@@ -23,6 +24,7 @@ func Setup() {
 	_ = event.DefaultDispatcher().Trigger(ELASTICSEARCH_CONNECT_EVENT, nil)
 }
 
+//Elasticsearch链接
 func connectElasticsearch() error {
 	return app.Container.Provide(func() (*elastic.Client, error) {
 		ctx := context.Background()
@@ -39,7 +41,8 @@ func connectElasticsearch() error {
 	})
 }
 
-func GetContection() (connection *elastic.Client) {
+//获取elasticsearch链接对象
+func Elasticsearch() (connection *elastic.Client) {
 	_ = app.Container.Invoke(func(conn *elastic.Client) {
 		connection = conn
 	})
