@@ -1,8 +1,6 @@
 package handler
 
 import (
-	"fmt"
-	"github.com/ebar-go/ego/app"
 	"github.com/ebar-go/ego/component/trace"
 	"github.com/ebar-go/ego/errors"
 	"github.com/ebar-go/ego/http/response"
@@ -14,7 +12,6 @@ func IndexHandler(ctx *gin.Context) {
 	data := response.Data{
 		"tips": "Hello World!",
 	}
-	fmt.Println(app.Redis().Ping())
 	response.WrapContext(ctx).Success(data)
 }
 

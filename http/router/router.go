@@ -13,4 +13,6 @@ func InitRouter(router *gin.Engine) {
 	router.StaticFile("favicon.ico", "./resources/favicon.ico")
 
 	router.GET("/", handler.IndexHandler)
+	router.GET("/post/:id", handler.GetPost)
+	router.GET("/post", handler.GetPostList)
 }
