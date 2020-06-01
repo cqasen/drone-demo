@@ -1,24 +1,31 @@
-# Primary
-SYSTEM_NAME: drone-demo
-LOG_LEVEL: debug
-LOG_PATH: /wwwlogs/
-HTTP_PORT: 8088
-# ES
-ELASTICSEARCH_URL: http://111.229.103.26:9200/
-ELASTICSEARCH_USERNAME: elastic
-ELASTICSEARCH_PASSWORD: 123456
-ELASTICSEARCH_SNIFF: false
-# Redis
-REDIS_AUTO_CONNECT: false
-REDIS_HOST: 192.168.0.222
-REDIS_PORT: 6379
-REDIS_USER:
-REDIS_AUTH:
+server: # 服务器配置
+  httpPort: 8088  # 端口号
+  systemName: drone-demo # 系统名称
+  maxResponseLogSize: 2000 # 响应内容截取长度
+  logPath: /wwwlogs # 日志目录
+  traceHeader: gateway-trace # trace头
+  httpRequestTimeout: 3 # http请求超时时间，单位：秒
+  jwtSign: drone-demo  # jwt的签名
 
-#mysql
-MYSQL_AUTO_CONNECT: true
-MYSQL_DATABASE: zblog
-MYSQL_MASTER_HOST: 111.229.103.26
-MYSQL_MASTER_PORT: 13306
-MYSQL_MASTER_USER: root
-MYSQL_MASTER_PASS: cqasen@qq.com
+mysql:    # mysql配置。支持多数据库，读写分离
+  default:  # 默认连接，如果还有其他数据库要连接，换个名字即可
+    maxIdleConnections: 10  # 最大空闲连接数
+    maxOpenConnections: 40  # 最大打开连接数
+    maxLifeTime: 8          # 超时时间
+    dsn:    # 连接配置，默认第一个为写库，也可以只配置一个，即读写使用一个连接
+      - host: 111.229.103.26
+        port: 13306
+        user: root
+        password: cqasen@qq.com
+        name: zblog
+
+redis: #redis
+  host: 192.168.0.222
+  port: 6379
+  pass:
+
+elasticsearch: #elasticsearch
+  url: http://111.229.103.26:9200/
+  username: elastic
+  password: 123456
+  sniff: false

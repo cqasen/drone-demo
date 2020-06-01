@@ -1,0 +1,10 @@
+version: "3"
+services:
+  drone-demo:
+    image: golang:latest
+    ports:
+      - 8088:8088
+    environment:
+      ENVIRONMENT: local
+    volumes:
+      - /wwwlogs:/wwwlogs
