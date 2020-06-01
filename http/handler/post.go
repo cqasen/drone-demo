@@ -11,7 +11,7 @@ import (
 
 func GetPost(ctx *gin.Context) {
 	id, _ := strconv.Atoi(ctx.Param("id"))
-	post, err := dao.Post(app.Mysql()).Get(int32(id))
+	post, err := dao.Post(app.DB()).Get(int32(id))
 	if err != nil {
 		panic(errors.New(404, "not found"))
 	}
@@ -19,7 +19,7 @@ func GetPost(ctx *gin.Context) {
 }
 
 func GetPostList(ctx *gin.Context) {
-	post, err := dao.Post(app.Mysql()).GetList()
+	post, err := dao.Post(app.DB()).GetList()
 	if err != nil {
 		panic(errors.New(404, "not found"))
 	}
