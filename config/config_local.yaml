@@ -25,7 +25,7 @@ redis: #redis
   pass:
 
 elasticsearch: #elasticsearch
-  url: http://111.229.103.26:9200/
+  url: http://es-cn-0pp1f256r000kh6gq.public.elasticsearch.aliyuncs.com:9200/
   username: elastic
-  password: 123456
+  password: "epet@es#2020"
   sniff: false

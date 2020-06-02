@@ -15,7 +15,7 @@ func main() {
 	//获取http服务对象
 	server := http.NewServer()
 	secure.FatalError("Mysql Start", app.InitDB())
-	//secure.FatalError("Redis Start",app.InitRedis())
+	secure.FatalError("Redis Start",app.InitRedis())
 	//链接es
 	secure.FatalError("Elasticsearch Start", app2.InitElasticsearch())
 	//加载路由

@@ -17,9 +17,9 @@ func InitElasticsearch() error {
 	password := viper.GetString("elasticsearch.password")
 	sniff := viper.GetBool("elasticsearch.sniff")
 	client, err := elastic.NewClient(elastic.SetURL(url), elastic.SetBasicAuth(username, password), elastic.SetSniff(sniff))
-	secure.FatalError("Elasticsearch  Connect", err)
+	secure.FatalError("Elasticsearch Connect", err)
 	info, code, err := client.Ping(url).Do(ctx)
-	secure.FatalError("Elasticsearch  Ping", err)
+	secure.FatalError("Elasticsearch Ping", err)
 	log.Printf("Elasticsearch returned with code %d and version %s\n", code, info.Version.Number)
 
 	return app.Container.Provide(func() (*elastic.Client) {
