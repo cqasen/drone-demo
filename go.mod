@@ -12,7 +12,6 @@ require (
 	github.com/go-redis/redis v6.15.8+incompatible // indirect
 	github.com/go-sql-driver/mysql v1.5.0 // indirect
 	github.com/gogap/errors v0.0.0-20200228125012-531a6449b28c // indirect
-	github.com/gogap/stack v0.0.0-20150131034635-fef68dddd4f8 // indirect
 	github.com/golang/protobuf v1.4.2 // indirect
 	github.com/jinzhu/gorm v1.9.12
 	github.com/klauspost/compress v1.10.7 // indirect
