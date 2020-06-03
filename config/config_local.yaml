@@ -20,7 +20,7 @@ mysql:    # mysql配置。支持多数据库，读写分离
         name: zblog
 
 redis: #redis
-  host: 192.168.0.222
+  host: 111.229.103.26
   port: 6379
   pass:
 

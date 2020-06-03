@@ -22,7 +22,7 @@ func InitElasticsearch() error {
 	secure.FatalError("Elasticsearch Ping", err)
 	log.Printf("Elasticsearch returned with code %d and version %s\n", code, info.Version.Number)
 
-	return app.Container.Provide(func() (*elastic.Client) {
+	return app.Container.Provide(func() *elastic.Client {
 		return client
 	})
 }
