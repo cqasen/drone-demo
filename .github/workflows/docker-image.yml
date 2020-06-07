@@ -23,10 +23,10 @@ jobs:
 
       - name: Build :latest
         if: success()
-        run: docker build -t cqasen/demo:$(date +%s) .
+        run: docker build -t cqasen/demo:${IMAGE_TAG} .
 
       - name: Push to docker hub :latest
         uses: actions-hub/docker@master
         if: success()
         with:
-          args: push cqasen/demo:$(date +%s)
+          args: push cqasen/demo:${IMAGE_TAG}
