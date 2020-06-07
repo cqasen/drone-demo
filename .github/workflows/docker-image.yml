@@ -23,4 +23,3 @@ jobs:
       - name: push
         run: |
         docker login -u cqasen -p admin199010
-        docker push cqasen/demo:$(date +%s)
