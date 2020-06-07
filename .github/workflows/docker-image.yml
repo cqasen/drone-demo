@@ -19,11 +19,12 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
 
+      - name: pwd
+        run: pwd
+
       - name: Build :latest
         if: success()
-        run: |
-        pwd
-        docker build -t cqasen/demo:latest .
+        run: docker build -t cqasen/demo:latest .
 
       - name: Push to docker hub :latest
         uses: actions-hub/docker@master
