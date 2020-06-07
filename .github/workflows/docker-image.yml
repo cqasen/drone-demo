@@ -15,12 +15,6 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: pwd1
-        run: pwd
-
-      - name: ls
-        run: ls -al
-
       - name: Login to docker hub
         uses: actions-hub/docker/login@master
         env:
@@ -29,16 +23,10 @@ jobs:
 
       - name: Build :latest
         if: success()
-        run: docker build -t cqasen/demo:latest .
-
-      - name: pwd2
-        run: pwd
-
-      - name: ls2
-        run: ls -al
+        run: docker build -t cqasen/demo:$(date +%s) .
 
       - name: Push to docker hub :latest
         uses: actions-hub/docker@master
         if: success()
         with:
-          args: push cqasen/demo:latest
+          args: push cqasen/demo:${IMAGE_TAG}
