@@ -23,7 +23,7 @@ jobs:
         if: success()
         run: |
         pwd
-        docker build -t cqasen/demo:latest . --file ../../Dockerfile
+        docker build -t cqasen/demo:latest .
 
       - name: Push to docker hub :latest
         uses: actions-hub/docker@master
