@@ -15,7 +15,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the Docker image
-        run: |
-        docker build . --file Dockerfile --tag cqasen/demo:$(date +%s)
-        docker login  -ucqasen -padmin199010
-        docker pull cqasen/demo:$(date +%s)
+        run: docker build . --file Dockerfile --tag cqasen/demo:$(date +%s)
+
+      - name: Docker Hub Description
+        uses: peter-evans/dockerhub-description@v2.1.1
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+          DOCKERHUB_REPOSITORY: cqasen/demo
