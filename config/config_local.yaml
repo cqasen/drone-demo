@@ -24,6 +24,7 @@ redis: #redis
   host: 111.229.103.26
   port: 6379
   pass:
+  prefix: gin_
 
 elasticsearch: #elasticsearch
   url: http://localhost:9200/
