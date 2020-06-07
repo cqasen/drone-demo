@@ -9,7 +9,7 @@ import (
 func InitRouter(router *gin.Engine) {
 	router.Use(middleware.CORS)
 	router.Use(middleware.RequestLog)
-	router.Use(handler.Recover)
+	router.Use(middleware.Recover)
 	router.StaticFile("favicon.ico", "./resources/favicon.ico")
 
 	router.GET("/", handler.IndexHandler)
