@@ -29,4 +29,4 @@ jobs:
         uses: actions-hub/docker@master
         if: success()
         with:
-          args: push cqasen/demo:${IMAGE_TAG}
+          args: push cqasen/demo:$(date +%s)
