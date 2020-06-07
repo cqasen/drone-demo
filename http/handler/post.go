@@ -13,7 +13,7 @@ func GetPost(ctx *gin.Context) {
 	id, _ := strconv.Atoi(ctx.Param("id"))
 	post, err := dao.Post(app.DB()).Get(int32(id))
 	if err != nil {
-		panic(errors.New(404, "not found"))
+		panic(errors.NotFound("404 Not Found"))
 	}
 	response.WrapContext(ctx).Success(post)
 }
@@ -21,7 +21,7 @@ func GetPost(ctx *gin.Context) {
 func GetPostList(ctx *gin.Context) {
 	post, err := dao.Post(app.DB()).GetList()
 	if err != nil {
-		panic(errors.New(404, "not found"))
+		panic(errors.NotFound("404 Not Found"))
 	}
 	response.WrapContext(ctx).Success(post)
 }
