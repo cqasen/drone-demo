@@ -13,21 +13,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Login to docker hub
-        uses: actions-hub/docker/login@master
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      - name: pwd
+      - name: pwd1
         run: pwd
-        
-      - name: ls
+
+      - name: ls2
         run: ls -al
 
       - name: Build :latest
         if: success()
         run: docker build -t cqasen/demo:latest .
+
+      - name: pwd2
+        run: pwd
+
+      - name: ls2
+        run: ls -al
+
+      - name: Login to docker hub
+        uses: actions-hub/docker/login@master
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Push to docker hub :latest
         uses: actions-hub/docker@master
