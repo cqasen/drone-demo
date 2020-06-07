@@ -21,6 +21,9 @@ jobs:
 
       - name: pwd
         run: pwd
+        
+      - name: ls
+        run: ls -al
 
       - name: Build :latest
         if: success()
