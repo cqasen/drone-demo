@@ -17,5 +17,5 @@ jobs:
       - name: Build the Docker image
         run: |
         docker build . --file Dockerfile --tag cqasen/demo:$(date +%s)
-        docker login
+        docker login  -ucqasen -padmin199010
         docker pull cqasen/demo:$(date +%s)
