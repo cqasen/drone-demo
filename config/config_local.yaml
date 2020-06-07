@@ -1,6 +1,6 @@
 server: # 服务器配置
   httpPort: 8088  # 端口号
-  systemName: drone-demo # 系统名称
+  systemName: gin-demo # 系统名称
   maxResponseLogSize: 2000 # 响应内容截取长度
   logPath: /wwwlogs/ # 日志目录
   traceHeader: gateway-trace # trace头
