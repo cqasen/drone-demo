@@ -15,8 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag cqasen/demo:$(date +%s)
-
-      - name: push
         run: |
+        docker build . --file Dockerfile --tag cqasen/demo:$(date +%s)
         docker login -u cqasen -p admin199010
+        docker pull cqasen/demo:$(date +%s)
