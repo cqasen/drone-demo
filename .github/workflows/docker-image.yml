@@ -13,6 +13,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: go version
+        run: go --version
+
       - uses: actions/checkout@v2
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag cqasen/demo:$(date +%s)
+
+      - name: push
+        run: |
+        docker login -u cqasen -p admin199010
+        docker push cqasen/demo:$(date +%s)
+        echo "run success"
