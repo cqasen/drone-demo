@@ -7,12 +7,20 @@ import (
 )
 
 func InitRouter(router *gin.Engine) {
+	//中间件
 	router.Use(middleware.CORS)
 	router.Use(middleware.RequestLog)
 	router.Use(middleware.Recover)
+	router.Use(middleware.Favicon)
+	//资源
 	router.StaticFile("favicon.ico", "./resources/favicon.ico")
-
+	//路由
 	router.GET("/", handler.IndexHandler)
-	router.GET("/post/:id", handler.GetPost)
-	router.GET("/post", handler.GetPostList)
+	//router.GET("/post/:id", handler.GetPost)
+	//router.GET("/post", handler.GetPostList)
+	post := router.Group("/post")
+	{
+		post.GET("/:id", handler.GetPost)
+		post.GET("", handler.GetPostList)
+	}
 }
