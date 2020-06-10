@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"github.com/cqasen/drone-demo/pkg/model/dao"
+	"github.com/cqasen/gin-demo/pkg/model/dao"
 	"github.com/ebar-go/ego/app"
 	"github.com/ebar-go/ego/errors"
 	"github.com/ebar-go/ego/http/response"

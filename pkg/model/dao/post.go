@@ -2,7 +2,7 @@ package dao
 
 import (
 	"fmt"
-	"github.com/cqasen/drone-demo/pkg/model/entity"
+	"github.com/cqasen/gin-demo/pkg/model/entity"
 	"github.com/jinzhu/gorm"
 )
 

@@ -1,7 +1,7 @@
 package router
 
 import (
-	"github.com/cqasen/drone-demo/http/handler"
+	"github.com/cqasen/gin-demo/http/handler"
 	"github.com/ebar-go/ego/http/middleware"
 	"github.com/gin-gonic/gin"
 )

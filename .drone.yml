@@ -1,9 +1,9 @@
-name: drone-demo
+name: gin-demo
 kind: pipeline
 type: docker
 #workspace:
 #  base: /go
-#  path: src/github.com/cqasen/drone-demo
+#  path: src/github.com/cqasen/gin-demo
 steps:
   #  - name: build
   #    image: golang:alpine

@@ -1,4 +1,4 @@
-module github.com/cqasen/drone-demo
+module github.com/cqasen/gin-demo
 
 go 1.13
 
