@@ -2,6 +2,7 @@ package router
 
 import (
 	"github.com/cqasen/gin-demo/http/handler"
+	middleware2 "github.com/cqasen/gin-demo/pkg/middleware"
 	"github.com/ebar-go/ego/http/middleware"
 	"github.com/gin-gonic/gin"
 )
@@ -12,6 +13,7 @@ func InitRouter(router *gin.Engine) {
 	router.Use(middleware.RequestLog)
 	router.Use(middleware.Recover)
 	router.Use(middleware.Favicon)
+	router.Use(middleware2.CheckPermission)
 	//资源
 	router.StaticFile("favicon.ico", "./resources/favicon.ico")
 	//路由

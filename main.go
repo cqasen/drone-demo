@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-	"github.com/casbin/casbin"
 	"github.com/cqasen/gin-demo/http/router"
 	"github.com/cqasen/gin-demo/pkg/config"
 	"github.com/ebar-go/ego"
@@ -19,9 +17,6 @@ func main() {
 	}()
 	//加载配置
 	config.InitConfig()
-	//加载权限
-	mycasbin()
-
 	//获取http服务对象
 	server := ego.HttpServer()
 	secure.FatalError("Mysql Start", app.InitDB())
@@ -32,12 +27,4 @@ func main() {
 	router.InitRouter(server.Router)
 	//启动服务
 	secure.FatalError("StartServer", server.Start())
-}
-
-func mycasbin() {
-	log.Println("加载权限配置BEGIN")
-	//e, _:= casbin.NewEnforcer("path/to/model.conf", "path/to/policy.csv")
-	e := casbin.NewEnforcer("./config/rbac_model.conf", "./config/rbac_policy.csv")
-	fmt.Println(e)
-	log.Println("加载权限配置END")
 }
