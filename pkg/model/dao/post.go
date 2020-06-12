@@ -2,7 +2,7 @@ package dao
 
 import (
 	"fmt"
-	"github.com/cqasen/drone-demo/pkg/model/entity"
+	"github.com/cqasen/gin-demo/pkg/model/entity"
 	"github.com/jinzhu/gorm"
 )
 
@@ -16,7 +16,7 @@ func Post(db *gorm.DB) *PostDao {
 
 func (dao PostDao) Get(id int32) (*entity.ZbpPost, error) {
 	post := new(entity.ZbpPost)
-	query := dao.db.Where(entity.ZbpPost{LogID: id}).First(post)
+	query := dao.db.Table(entity.TABLE_POST).Debug().Where(entity.ZbpPost{LogID: id}).First(post)
 	if err := query.Error; err != nil {
 		return nil, err
 	}

@@ -1,9 +1,10 @@
-module github.com/cqasen/drone-demo
+module github.com/cqasen/gin-demo
 
 go 1.13
 
 require (
 	github.com/aliyun/aliyun-mns-go-sdk v0.0.0-20191205082232-b251b9d95415 // indirect
+	github.com/casbin/casbin v1.9.1
 	github.com/ebar-go/ego v0.9.1
 	github.com/ebar-go/event v0.2.0
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
