@@ -5,8 +5,8 @@ import (
 	"github.com/casbin/casbin"
 	"github.com/cqasen/gin-demo/http/router"
 	"github.com/cqasen/gin-demo/pkg/config"
+	"github.com/ebar-go/ego"
 	"github.com/ebar-go/ego/app"
-	"github.com/ebar-go/ego/http"
 	"github.com/ebar-go/ego/utils/secure"
 	"log"
 )
@@ -23,7 +23,7 @@ func main() {
 	mycasbin()
 
 	//获取http服务对象
-	server := http.NewServer()
+	server := ego.HttpServer()
 	secure.FatalError("Mysql Start", app.InitDB())
 	secure.FatalError("Redis Start", app.InitRedis())
 	//链接es
@@ -34,7 +34,7 @@ func main() {
 	secure.FatalError("StartServer", server.Start())
 }
 
-func mycasbin()  {
+func mycasbin() {
 	log.Println("加载权限配置BEGIN")
 	//e, _:= casbin.NewEnforcer("path/to/model.conf", "path/to/policy.csv")
 	e := casbin.NewEnforcer("./config/rbac_model.conf", "./config/rbac_policy.csv")
