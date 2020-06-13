@@ -5,12 +5,15 @@ go 1.13
 require (
 	github.com/aliyun/aliyun-mns-go-sdk v0.0.0-20191205082232-b251b9d95415 // indirect
 	github.com/casbin/casbin v1.9.1
+	github.com/casbin/casbin/v2 v2.6.12
+	github.com/casbin/gorm-adapter v1.0.0 // indirect
+	github.com/casbin/gorm-adapter/v2 v2.1.0
 	github.com/ebar-go/ego v0.9.12
 	github.com/ebar-go/event v0.2.0
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-redis/redis v6.15.8+incompatible // indirect
-	github.com/go-sql-driver/mysql v1.5.0 // indirect
+	github.com/go-sql-driver/mysql v1.5.0
 	github.com/gogap/errors v0.0.0-20200228125012-531a6449b28c // indirect
 	github.com/jinzhu/gorm v1.9.12
 	github.com/klauspost/compress v1.10.8 // indirect
