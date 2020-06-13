@@ -20,7 +20,7 @@ func init() {
 }
 
 func CheckPermission(ctx *gin.Context) {
-	role := "superAdmin"
+	role := "admin"
 	//log.Printf("配置加载")
 	//enforcer, err := casbin.NewEnforcerSafe("./config/rbac_model.conf", "./config/rbac_policy.csv")
 	//if err != nil {

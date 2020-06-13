@@ -1,8 +1,5 @@
-p, superAdmin, /*, *
-p, superAdmin, /post, GET
-p, superAdmin, /post/*, GET
-p, superAdmin, /, GET
-p, admin, /, GET
 p, admin, /post, GET
+p, admin, /post/*, GET
+p, admin, /, GET
 
-g, quyuan, superAdmin
+g, quyuan, admin
