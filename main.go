@@ -28,6 +28,7 @@ func init() {
 	event.Listen(event.BeforeHttpShutdown, func(ev event.Event) {
 		log.Printf("close database")
 		_ = app.DB().Close()
+		_ = app.Redis().Close()
 	})
 }
 
