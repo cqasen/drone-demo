@@ -8,7 +8,7 @@ require (
 	github.com/casbin/casbin/v2 v2.6.12
 	github.com/casbin/gorm-adapter v1.0.0 // indirect
 	github.com/casbin/gorm-adapter/v2 v2.1.0
-	github.com/ebar-go/ego v0.9.12
+	github.com/ebar-go/ego v0.9.13
 	github.com/ebar-go/event v0.2.0
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/gin-gonic/gin v1.6.3
@@ -33,7 +33,7 @@ require (
 	go.uber.org/dig v1.9.0 // indirect
 	go.uber.org/zap v1.15.0 // indirect
 	golang.org/x/lint v0.0.0-20200302205851-738671d3881b // indirect
-	golang.org/x/tools v0.0.0-20200612022331-742c5eb664c2 // indirect
+	golang.org/x/tools v0.0.0-20200612220849-54c614fe050c // indirect
 	google.golang.org/appengine v1.6.6 // indirect
 	gopkg.in/ini.v1 v1.57.0 // indirect
 )

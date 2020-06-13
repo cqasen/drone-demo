@@ -1,30 +1,41 @@
 package main
 
 import (
-	"github.com/cqasen/gin-demo/http/router"
+	"fmt"
+	"github.com/cqasen/gin-demo/http/route"
 	"github.com/cqasen/gin-demo/pkg/config"
 	"github.com/ebar-go/ego"
 	"github.com/ebar-go/ego/app"
+	"github.com/ebar-go/ego/component/event"
 	"github.com/ebar-go/ego/utils/secure"
 	"log"
 )
 
-func main() {
+func init() {
 	defer func() {
 		if r := recover(); r != nil {
 			log.Println(r)
 		}
 	}()
 	//加载配置
-	config.InitConfig()
-	//获取http服务对象
-	server := ego.HttpServer()
-	secure.FatalError("Mysql Start", app.InitDB())
-	secure.FatalError("Redis Start", app.InitRedis())
+	env := config.GetEnv()
+	log.Println("获取的环境变量：" + env)
+	secure.Panic(app.Config().LoadFile(fmt.Sprintf("./config/config_%s.yaml", env)))
+	secure.Panic(app.InitDB())
+	secure.Panic(app.Redis().Connect())
 	//链接es
 	//secure.FatalError("Elasticsearch Start", app2.InitElasticsearch())
+	event.Listen(event.BeforeHttpShutdown, func(ev event.Event) {
+		log.Printf("close database")
+		_ = app.DB().Close()
+	})
+}
+
+func main() {
+	//获取http服务对象
+	server := ego.HttpServer()
 	//加载路由
-	router.InitRouter(server.Router)
+	route.Load(server.Router)
 	//启动服务
-	secure.FatalError("StartServer", server.Start())
+	secure.Panic(server.Start())
 }

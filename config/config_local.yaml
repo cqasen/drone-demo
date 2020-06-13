@@ -20,10 +20,14 @@ mysql:    # mysql配置。支持多数据库，读写分离
         password: cqasen@qq.com
         name: zblog
 
-redis: #redis
+redis:
   host: 111.229.103.26
-  port: 6379
   pass:
+  port: 6379
+  poolSize: 100
+  maxRetries: 3
+  idleTimeout: 3
+  cluster:
   prefix: gin_
 
 elasticsearch: #elasticsearch
