@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"github.com/cqasen/gin-demo/http/route"
-	app2 "github.com/cqasen/gin-demo/pkg/app"
 	"github.com/cqasen/gin-demo/pkg/config"
 	"github.com/ebar-go/ego"
 	"github.com/ebar-go/ego/app"
@@ -25,7 +24,7 @@ func main() {
 	secure.Panic(app.InitDB())
 	secure.Panic(app.Redis().Connect())
 	//链接es
-	secure.Panic(app2.InitElasticsearch())
+	//secure.Panic(app2.InitElasticsearch())
 	event.Listen(event.BeforeHttpShutdown, func(ev event.Event) {
 		log.Printf("close database")
 		_ = app.DB().Close()

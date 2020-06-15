@@ -29,7 +29,7 @@ func init() {
 }
 
 func CheckPermission(ctx *gin.Context) {
-	role := "admin"
+	role := "anonymous"
 	//log.Printf("配置加载")
 	//enforcer, err := casbin.NewEnforcer("./config/rbac_model.conf", "./config/rbac_policy.csv")
 	//if err != nil {
@@ -44,7 +44,7 @@ func CheckPermission(ctx *gin.Context) {
 		ctx.Abort()
 	}
 	if !result {
-		log.Println(fmt.Sprintf("角色：superAdmin 没有请求%s,%s的权限\n", ctx.Request.RequestURI, ctx.Request.Method))
+		log.Println(fmt.Sprintf("角色：%s 没有请求%s,%s的权限\n", role, ctx.Request.RequestURI, ctx.Request.Method))
 		response.WrapContext(ctx).Error(401, "Unauthorized您无权查看此目录或页面")
 		ctx.Abort()
 	}

@@ -1,5 +1,7 @@
 p, admin, /post, GET
 p, admin, /post/*, GET
 p, admin, /, GET
+p, anonymous, /, GET
+p, anonymous, /post, GET
 
 g, quyuan, admin
