@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/cqasen/gin-demo/http/route"
+	app2 "github.com/cqasen/gin-demo/pkg/app"
 	"github.com/cqasen/gin-demo/pkg/config"
 	"github.com/ebar-go/ego"
 	"github.com/ebar-go/ego/app"
@@ -11,7 +12,7 @@ import (
 	"log"
 )
 
-func init() {
+func main() {
 	defer func() {
 		if r := recover(); r != nil {
 			log.Println(r)
@@ -24,15 +25,12 @@ func init() {
 	secure.Panic(app.InitDB())
 	secure.Panic(app.Redis().Connect())
 	//链接es
-	//secure.FatalError("Elasticsearch Start", app2.InitElasticsearch())
+	secure.Panic(app2.InitElasticsearch())
 	event.Listen(event.BeforeHttpShutdown, func(ev event.Event) {
 		log.Printf("close database")
 		_ = app.DB().Close()
 		_ = app.Redis().Close()
 	})
-}
-
-func main() {
 	//获取http服务对象
 	server := ego.HttpServer()
 	//加载路由
