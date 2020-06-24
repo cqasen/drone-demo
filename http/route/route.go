@@ -3,6 +3,7 @@ package route
 import (
 	"github.com/cqasen/gin-demo/http/handler"
 	middleware2 "github.com/cqasen/gin-demo/pkg/middleware"
+	"github.com/cqasen/gin-demo/pkg/model/data"
 	"github.com/ebar-go/ego/http/middleware"
 	"github.com/gin-gonic/gin"
 )
@@ -22,7 +23,13 @@ func Load(route *gin.Engine) {
 	//route.GET("/post", handler.GetPostList)
 	post := route.Group("/post")
 	{
-		post.GET("/:id", handler.GetPost)
 		post.GET("", handler.GetPostList)
+		post.GET("/:id", handler.GetPost)
+	}
+	route.GET("/login", handler.Login)
+
+	post1 := route.Group("/search").Use(middleware.JWT(&data.UseClaims{}))
+	{
+		post1.GET("", handler.SeaarchPost)
 	}
 }

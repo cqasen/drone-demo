@@ -11,6 +11,14 @@ import (
 	"log"
 )
 
+func init() {
+	event.Listen(event.BeforeHttpShutdown, func(ev event.Event) {
+		log.Printf("close database")
+		_ = app.DB().Close()
+		_ = app.Redis().Close()
+	})
+}
+
 func main() {
 	defer func() {
 		if r := recover(); r != nil {
@@ -25,11 +33,7 @@ func main() {
 	secure.Panic(app.Redis().Connect())
 	//链接es
 	//secure.Panic(app2.InitElasticsearch())
-	event.Listen(event.BeforeHttpShutdown, func(ev event.Event) {
-		log.Printf("close database")
-		_ = app.DB().Close()
-		_ = app.Redis().Close()
-	})
+
 	//获取http服务对象
 	server := ego.HttpServer()
 	//加载路由

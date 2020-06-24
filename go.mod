@@ -8,6 +8,7 @@ require (
 	github.com/casbin/casbin/v2 v2.6.12
 	github.com/casbin/gorm-adapter v1.0.0 // indirect
 	github.com/casbin/gorm-adapter/v2 v2.1.0
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/ebar-go/ego v0.9.13
 	github.com/ebar-go/event v0.2.0
 	github.com/fsnotify/fsnotify v1.4.9 // indirect

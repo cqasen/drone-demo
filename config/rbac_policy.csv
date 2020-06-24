@@ -3,5 +3,7 @@ p, admin, /post/*, GET
 p, admin, /, GET
 p, anonymous, /, GET
 p, anonymous, /post, GET
+p, anonymous, /search, GET
+p, anonymous, /login, GET
 
 g, quyuan, admin
