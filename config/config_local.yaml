@@ -31,7 +31,7 @@ redis:
   prefix: gin_
 
 elasticsearch: #elasticsearch
-  url: http://es-cn-0pp1f256r000kh6gq.public.elasticsearch.aliyuncs.com:9200/
+  url: http://es-cn-11.public.elasticsearch.aliyuncs.com:9200/
   username: elastic
-  password: "epet@es#2020"
+  password: "111@es#11"
   sniff: false

@@ -19,7 +19,6 @@ require (
 	github.com/jinzhu/gorm v1.9.12
 	github.com/klauspost/compress v1.10.8 // indirect
 	github.com/klauspost/cpuid v1.2.5 // indirect
-	github.com/kr/pty v1.1.5 // indirect
 	github.com/mitchellh/mapstructure v1.3.2 // indirect
 	github.com/olivere/elastic v6.2.33+incompatible
 	github.com/pelletier/go-toml v1.8.0 // indirect
@@ -31,7 +30,6 @@ require (
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/spf13/viper v1.7.0
-	github.com/stretchr/objx v0.2.0 // indirect
 	github.com/valyala/fasthttp v1.14.0 // indirect
 	go.uber.org/dig v1.9.0 // indirect
 	go.uber.org/zap v1.15.0 // indirect
