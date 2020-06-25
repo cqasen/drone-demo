@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"github.com/cqasen/gin-demo/pkg/response"
+	"github.com/cqasen/gin-demo/pkg/dto/response"
 	"github.com/cqasen/gin-demo/pkg/service/data"
 	"github.com/cqasen/gin-demo/pkg/service/entity"
 	"github.com/ebar-go/ego/app"

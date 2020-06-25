@@ -1,8 +1,7 @@
 package handler
 
 import (
-	"fmt"
-	"github.com/cqasen/gin-demo/pkg/request"
+	"github.com/cqasen/gin-demo/pkg/dto/request"
 	"github.com/cqasen/gin-demo/pkg/service"
 	"github.com/cqasen/gin-demo/pkg/utils"
 	"github.com/ebar-go/ego/errors"
@@ -22,14 +21,12 @@ func Login(ctx *gin.Context) {
 	if err := ctx.ShouldBindJSON(&req); err != nil {
 		secure.Panic(errors.New(-1, err.Error()))
 	}
-	fmt.Println("name:", req)
 	vd := new(validator.Validator)
 	err := vd.ValidateStruct(req)
 	if err != nil {
 		secure.Panic(errors.New(-1, err.Error()))
 	}
 	res, err := service.User().Auth(req)
-	fmt.Println(res)
 	if err != nil {
 		secure.Panic(err)
 	}
