@@ -2,9 +2,9 @@ package service
 
 import (
 	"fmt"
-	"github.com/cqasen/gin-demo/pkg/model/dao"
 	"github.com/cqasen/gin-demo/pkg/request"
 	"github.com/cqasen/gin-demo/pkg/response"
+	"github.com/cqasen/gin-demo/pkg/service/dao"
 	"github.com/cqasen/gin-demo/pkg/utils"
 	"github.com/ebar-go/ego/app"
 	"github.com/ebar-go/ego/errors"
@@ -24,7 +24,7 @@ func (service *userService) Auth(req request.UserLogin) (*response.UserAuthRespo
 	}
 	fmt.Println(user)
 	//验证密码
-	res, err := utils.GetLoginToken(user)
+	res, err := utils.GetAuthToken(user)
 	if err != nil {
 		return nil, errors.New(-1, fmt.Sprintf("Token生成失败：%s", err.Error()))
 	}

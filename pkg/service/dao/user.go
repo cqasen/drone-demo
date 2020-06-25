@@ -1,7 +1,7 @@
 package dao
 
 import (
-	"github.com/cqasen/gin-demo/pkg/model/entity"
+	"github.com/cqasen/gin-demo/pkg/service/entity"
 	"github.com/jinzhu/gorm"
 )
 

@@ -3,6 +3,7 @@ p, admin, /post/*, GET
 p, admin, /, GET
 p, anonymous, /, GET
 p, anonymous, /post, GET
+p, anonymous, /post/*, GET
 p, anonymous, /user-info, GET
 p, anonymous, /login, GET
 

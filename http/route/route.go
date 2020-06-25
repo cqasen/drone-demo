@@ -3,7 +3,7 @@ package route
 import (
 	"github.com/cqasen/gin-demo/http/handler"
 	middleware2 "github.com/cqasen/gin-demo/pkg/middleware"
-	"github.com/cqasen/gin-demo/pkg/model/data"
+	"github.com/cqasen/gin-demo/pkg/service/data"
 	"github.com/ebar-go/ego/http/middleware"
 	"github.com/gin-gonic/gin"
 )

@@ -1,9 +1,9 @@
 package utils
 
 import (
-	"github.com/cqasen/gin-demo/pkg/model/data"
-	"github.com/cqasen/gin-demo/pkg/model/entity"
 	"github.com/cqasen/gin-demo/pkg/response"
+	"github.com/cqasen/gin-demo/pkg/service/data"
+	"github.com/cqasen/gin-demo/pkg/service/entity"
 	"github.com/ebar-go/ego/app"
 	"github.com/ebar-go/ego/errors"
 	"github.com/ebar-go/ego/utils/date"
@@ -25,7 +25,7 @@ func GetLoginUserFromContext(ctx *gin.Context) data.User {
 }
 
 //获取token
-func GetLoginToken(member *entity.ZbpMember) (*response.UserAuthResponse, error) {
+func GetAuthToken(member *entity.ZbpMember) (*response.UserAuthResponse, error) {
 	useClaims := new(data.UseClaims)
 	useClaims.ExpiresAt = date.GetTimeStamp() + 3600
 	useClaims.User.Id = int(member.MemID)
