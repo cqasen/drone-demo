@@ -28,8 +28,8 @@ func Load(route *gin.Engine) {
 	}
 	route.GET("/login", handler.Login)
 
-	post1 := route.Group("/search").Use(middleware.JWT(&data.UseClaims{}))
+	post1 := route.Group("/user-info").Use(middleware.JWT(&data.UseClaims{}))
 	{
-		post1.GET("", handler.SeaarchPost)
+		post1.GET("", handler.GetInfo)
 	}
 }
