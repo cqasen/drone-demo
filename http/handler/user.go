@@ -7,7 +7,7 @@ import (
 	"github.com/ebar-go/ego/errors"
 	"github.com/ebar-go/ego/http/response"
 	"github.com/ebar-go/ego/http/validator"
-	"github.com/ebar-go/ego/utils/secure"
+	"github.com/ebar-go/egu"
 	"github.com/gin-gonic/gin"
 )
 
@@ -19,16 +19,16 @@ func GetInfo(ctx *gin.Context) {
 func Login(ctx *gin.Context) {
 	var req request.UserLogin
 	if err := ctx.ShouldBindJSON(&req); err != nil {
-		secure.Panic(errors.New(-1, err.Error()))
+		egu.SecurePanic(errors.New(-1, err.Error()))
 	}
 	vd := new(validator.Validator)
 	err := vd.ValidateStruct(req)
 	if err != nil {
-		secure.Panic(errors.New(-1, err.Error()))
+		egu.SecurePanic(errors.New(-1, err.Error()))
 	}
 	res, err := service.User().Auth(req)
 	if err != nil {
-		secure.Panic(err)
+		egu.SecurePanic(err)
 	}
 	response.WrapContext(ctx).Success(res)
 }

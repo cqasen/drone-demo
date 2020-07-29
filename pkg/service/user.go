@@ -8,7 +8,7 @@ import (
 	"github.com/cqasen/gin-demo/pkg/utils"
 	"github.com/ebar-go/ego/app"
 	"github.com/ebar-go/ego/errors"
-	"github.com/ebar-go/ego/utils/strings"
+	"github.com/ebar-go/egu"
 )
 
 type userService struct {
@@ -23,7 +23,7 @@ func (service *userService) Auth(req request.UserLogin) (*response.UserAuthRespo
 	if err != nil {
 		return nil, errors.New(-1, fmt.Sprintf("获取用户信息失败：%s", err.Error()))
 	}
-	pass := strings.Md5(strings.Md5(req.Pass) + string(user.MemGUID))
+	pass := egu.Md5(egu.Md5(req.Pass) + string(user.MemGUID))
 	if pass != user.MemPassword {
 		return nil, errors.New(-1, fmt.Sprintf("密码错误"))
 	}

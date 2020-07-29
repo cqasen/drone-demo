@@ -7,7 +7,8 @@ import (
 	"github.com/ebar-go/ego"
 	"github.com/ebar-go/ego/app"
 	"github.com/ebar-go/ego/component/event"
-	"github.com/ebar-go/ego/utils/secure"
+	"github.com/ebar-go/egu"
+
 	"log"
 )
 
@@ -28,16 +29,16 @@ func main() {
 	//加载配置
 	env := config.GetEnv()
 	log.Println("获取的环境变量：" + env)
-	secure.Panic(app.Config().LoadFile(fmt.Sprintf("./config/config_%s.yaml", env)))
-	secure.Panic(app.InitDB())
-	secure.Panic(app.Redis().Connect())
+	egu.SecurePanic(app.Config().LoadFile(fmt.Sprintf("./config/config_%s.yaml", env)))
+	egu.SecurePanic(app.InitDB())
+	egu.SecurePanic(app.Redis().Connect())
 	//链接es
-	//secure.Panic(app2.InitElasticsearch())
+	//egu.SecurePanic(app2.InitElasticsearch())
 
 	//获取http服务对象
 	server := ego.HttpServer()
 	//加载路由
 	route.Load(server.Router)
 	//启动服务
-	secure.Panic(server.Start())
+	egu.SecurePanic(server.Start())
 }

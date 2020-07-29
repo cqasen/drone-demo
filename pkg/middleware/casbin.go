@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/casbin/casbin/v2"
 	"github.com/ebar-go/ego/http/response"
-	"github.com/ebar-go/ego/utils/secure"
+	"github.com/ebar-go/egu"
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
 	"log"
@@ -24,7 +24,7 @@ func init() {
 	//secure.FatalError("加载数据库权限配置错误", err)
 	//authEnforcer, err := casbin.NewEnforcer("./config/rbac_model.conf", a)
 	authEnforcer, err := casbin.NewEnforcer("./config/rbac_model.conf", "./config/rbac_policy.csv")
-	secure.FatalError("加载权限配置", err)
+	egu.FatalError("加载权限配置", err)
 	enforcer = authEnforcer
 }
 
