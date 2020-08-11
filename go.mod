@@ -57,3 +57,5 @@ require (
 	gopkg.in/go-playground/validator.v9 v9.31.0 // indirect
 	gopkg.in/ini.v1 v1.57.0 // indirect
 )
+
+replace google.golang.org/grpc => google.golang.org/grpc v1.26.0
