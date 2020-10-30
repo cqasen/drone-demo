@@ -6,5 +6,7 @@ p, anonymous, /post, GET
 p, anonymous, /post/*, GET
 p, anonymous, /user-info, GET
 p, anonymous, /login, GET
+p, anonymous, /search, GET
+p, anonymous, /push*, GET
 
 g, quyuan, admin

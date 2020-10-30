@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/cqasen/gin-demo/http/route"
+	app2 "github.com/cqasen/gin-demo/pkg/app"
 	"github.com/cqasen/gin-demo/pkg/config"
 	"github.com/ebar-go/ego"
 	"github.com/ebar-go/ego/app"
@@ -33,7 +34,7 @@ func main() {
 	egu.SecurePanic(app.InitDB())
 	egu.SecurePanic(app.Redis().Connect())
 	//链接es
-	//egu.SecurePanic(app2.InitElasticsearch())
+	egu.SecurePanic(app2.InitElasticsearch())
 
 	//获取http服务对象
 	server := ego.HttpServer()

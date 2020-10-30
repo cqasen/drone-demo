@@ -19,14 +19,16 @@ func Load(route *gin.Engine) {
 	route.StaticFile("favicon.ico", "./resources/favicon.ico")
 	//路由
 	route.GET("/", handler.IndexHandler)
-	//route.GET("/post/:id", handler.GetPost)
-	//route.GET("/post", handler.GetPostList)
 	post := route.Group("/post")
 	{
 		post.GET("", handler.GetPostList)
 		post.GET("/:id", handler.GetPost)
 	}
+
 	route.GET("/login", handler.Login)
+	route.GET("/search", handler.SearchPost)
+	route.GET("/push", handler.PushPostList)
+	route.GET("/push/:id", handler.PushPost)
 
 	post1 := route.Group("/user-info").Use(middleware.JWT(&data.UseClaims{}))
 	{

@@ -27,10 +27,9 @@ require (
 	github.com/klauspost/cpuid v1.2.5 // indirect
 	github.com/kr/pty v1.1.5 // indirect
 	github.com/lestrrat-go/strftime v1.0.3 // indirect
-	github.com/mailru/easyjson v0.7.2 // indirect
 	github.com/mitchellh/mapstructure v1.3.3 // indirect
 	github.com/nsqio/go-nsq v1.0.8 // indirect
-	github.com/olivere/elastic v6.2.34+incompatible
+	github.com/olivere/elastic/v7 v7.0.21
 	github.com/pelletier/go-toml v1.8.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/prometheus/client_golang v1.7.1 // indirect
