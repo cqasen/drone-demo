@@ -1,5 +1,6 @@
 p, admin, /post, GET
 p, admin, /post/*, GET
+p, admin, /poetry/*, GET
 p, admin, /, GET
 p, anonymous, /, GET
 p, anonymous, /post, GET
@@ -8,5 +9,6 @@ p, anonymous, /user-info, GET
 p, anonymous, /login, GET
 p, anonymous, /search, GET
 p, anonymous, /push*, GET
+p, anonymous, /poetry/*, GET
 
 g, quyuan, admin

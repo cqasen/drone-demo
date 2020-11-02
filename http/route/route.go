@@ -25,6 +25,14 @@ func Load(route *gin.Engine) {
 		post.GET("/:id", handler.GetPost)
 	}
 
+
+	//诗歌
+	poetry := route.Group("/poetry")
+	{
+		poetry.GET("/push", handler.PushPoetry)
+		poetry.GET("/search", handler.SearchPoetry)
+	}
+
 	route.GET("/login", handler.Login)
 	route.GET("/search", handler.SearchPost)
 	route.GET("/push", handler.PushPostList)

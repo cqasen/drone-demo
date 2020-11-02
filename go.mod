@@ -14,40 +14,31 @@ require (
 	github.com/ebar-go/egu v0.1.1
 	github.com/ebar-go/event v0.2.0
 	github.com/ebar-go/ws v0.1.0 // indirect
-	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/gin-gonic/gin v1.6.3
 	github.com/go-openapi/spec v0.19.9 // indirect
 	github.com/go-openapi/swag v0.19.9 // indirect
-	github.com/go-redis/redis v6.15.8+incompatible // indirect
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/gogap/errors v0.0.0-20200228125012-531a6449b28c // indirect
 	github.com/gogo/protobuf v1.3.1 // indirect
 	github.com/jinzhu/gorm v1.9.15
 	github.com/klauspost/compress v1.10.8 // indirect
 	github.com/klauspost/cpuid v1.2.5 // indirect
-	github.com/kr/pty v1.1.5 // indirect
 	github.com/lestrrat-go/strftime v1.0.3 // indirect
 	github.com/mitchellh/mapstructure v1.3.3 // indirect
 	github.com/nsqio/go-nsq v1.0.8 // indirect
 	github.com/olivere/elastic/v7 v7.0.21
 	github.com/pelletier/go-toml v1.8.0 // indirect
-	github.com/pkg/errors v0.9.1 // indirect
 	github.com/prometheus/client_golang v1.7.1 // indirect
-	github.com/prometheus/common v0.10.0 // indirect
 	github.com/spf13/afero v1.3.2 // indirect
 	github.com/spf13/cast v1.3.1 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/spf13/viper v1.7.0
-	github.com/stretchr/objx v0.2.0 // indirect
 	github.com/swaggo/swag v1.6.7 // indirect
 	github.com/valyala/fasthttp v1.14.0 // indirect
-	go.uber.org/dig v1.10.0 // indirect
-	go.uber.org/zap v1.15.0 // indirect
 	golang.org/x/lint v0.0.0-20200302205851-738671d3881b // indirect
 	golang.org/x/net v0.0.0-20200707034311-ab3426394381 // indirect
 	golang.org/x/sys v0.0.0-20200728102440-3e129f6d46b1 // indirect
-	golang.org/x/text v0.3.3 // indirect
 	golang.org/x/tools v0.0.0-20200728235236-e8769ccb4337 // indirect
 	google.golang.org/appengine v1.6.6 // indirect
 	google.golang.org/genproto v0.0.0-20200729003335-053ba62fc06f // indirect
