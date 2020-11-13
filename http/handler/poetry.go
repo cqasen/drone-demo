@@ -39,8 +39,10 @@ func PushPoetry(ctx *gin.Context) {
 
 	var poetryList PoetryList
 	// 将字节切片映射到指定结构上
-	egu.JsonDecode(bytes, &poetryList)
-
+	err := egu.JsonDecode(bytes, &poetryList)
+	if err != nil {
+		log.Println(err)
+	}
 	client := app.Elasticsearch()
 	bulkRequest := client.Bulk()
 	for _, poetryItem := range poetryList {
@@ -62,10 +64,10 @@ func PushPoetry(ctx *gin.Context) {
 func SearchPoetry(ctx *gin.Context) {
 	word := ctx.Query("word")
 	page, _ := strconv.Atoi(ctx.DefaultQuery("page", "1"))
-	page_size, _ := strconv.Atoi(ctx.DefaultQuery("page_size", "10"))
-	from := (page - 1) * page_size
+	pageSize, _ := strconv.Atoi(ctx.DefaultQuery("page_size", "10"))
+	from := (page - 1) * pageSize
 
-	log.Println(word, page, page_size)
+	log.Println(word, page, pageSize)
 
 	client := app.Elasticsearch()
 	query := elastic.NewBoolQuery()
@@ -83,12 +85,17 @@ func SearchPoetry(ctx *gin.Context) {
 		Index(indexName).
 		Query(query).
 		From(from).
-		Size(page_size).
+		Size(pageSize).
 		Timeout("10ms").
 		Do(context.Background())
+
 	if err != nil {
 		ctx.Abort()
 		response.WrapContext(ctx).Error(1, err.Error())
+	}
+	if searchRes == nil {
+		ctx.Abort()
+		response.WrapContext(ctx).Error(1, "请求失败")
 	}
 	var poetryItem PoetryItem
 	var poetryList []PoetryItem
@@ -97,6 +104,6 @@ func SearchPoetry(ctx *gin.Context) {
 		poetryList = append(poetryList, t)
 	}
 
-	pagination := pagination.Paginate(int(searchRes.Hits.TotalHits.Value), page, page_size)
+	pagination := pagination.Paginate(int(searchRes.Hits.TotalHits.Value), page, pageSize)
 	response.WrapContext(ctx).Paginate(poetryList, &pagination)
 }

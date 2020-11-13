@@ -25,7 +25,6 @@ func Load(route *gin.Engine) {
 		post.GET("/:id", handler.GetPost)
 	}
 
-
 	//诗歌
 	poetry := route.Group("/poetry")
 	{
