@@ -3,29 +3,40 @@ package middleware
 import (
 	"fmt"
 	"github.com/casbin/casbin/v2"
+	gormadapter "github.com/casbin/gorm-adapter/v3"
 	"github.com/ebar-go/ego/http/response"
 	"github.com/ebar-go/egu"
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
 	"log"
+	"net"
+	"strconv"
 )
 
 var enforcer *casbin.Enforcer
 
 func init() {
 	log.Printf("加载配置权限")
-	//dns := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8&parseTime=True&loc=Local",
-	//	"root",
-	//	"cqasen@qq.com",
-	//	net.JoinHostPort("", strconv.Itoa(13306)),
-	//	"casbin")
-	//log.Printf(dns)
+
+	dns := fmt.Sprintf("%s:%s@tcp(%s)/",
+		"root",
+		"cqasen@qq.com",
+		net.JoinHostPort("111.229.103.26", strconv.Itoa(13306)))
+	log.Printf(dns)
 	//a, err := gormadapter.NewAdapter("mysql", dns, false)
 	//secure.FatalError("加载数据库权限配置错误", err)
-	//authEnforcer, err := casbin.NewEnforcer("./config/rbac_model.conf", a)
-	authEnforcer, err := casbin.NewEnforcer("./config/rbac_model.conf", "./config/rbac_policy.csv")
+	//e, err := casbin.NewEnforcer("./config/rbac_model.conf", a)
+	//读取csv
+	//e, err := casbin.NewEnforcer("./config/rbac_model.conf", "./config/rbac_policy.csv")
+	//egu.FatalError("加载权限配置", err)
+
+	//读取数据库
+	a, _ := gormadapter.NewAdapter("mysql", dns, "zblog")
+	e, _ := casbin.NewEnforcer("./config/rbac_model.conf", a)
+	//从DB加载策略
+	err := e.LoadPolicy()
 	egu.FatalError("加载权限配置", err)
-	enforcer = authEnforcer
+	enforcer = e
 }
 
 func CheckPermission(ctx *gin.Context) {
@@ -49,4 +60,8 @@ func CheckPermission(ctx *gin.Context) {
 		ctx.Abort()
 	}
 	ctx.Next()
+}
+
+func GetEnforcer() *casbin.Enforcer {
+	return enforcer
 }

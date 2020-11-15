@@ -41,6 +41,7 @@ func Load(route *gin.Engine) {
 	{
 		post1.GET("", handler.GetInfo)
 	}
-	route.GET("/route/push", handler.Push)
+	route.GET("/route/push", handler.PushRoute)
+	route.GET("/quanxian", handler.SetJurisdiction)
 	handler.InitRoute(route)
 }
