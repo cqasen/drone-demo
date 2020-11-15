@@ -1,5 +1,7 @@
 package entity
 
+import "time"
+
 const (
 	TABLE_CATEGORY = "zbp_category"
 	TABLE_COMMENT  = "zbp_comment"
@@ -9,6 +11,7 @@ const (
 	TABLE_POST     = "zbp_post"
 	TABLE_TAG      = "zbp_tag"
 	TABLE_UPLOAD   = "zbp_upload"
+	TABLE_ROUTERS  = "routers"
 )
 
 // ZbpCategory ...
@@ -169,3 +172,13 @@ type ZbpUpload struct {
 func (ZbpUpload) TableName() string {
 	return TABLE_UPLOAD
 }
+
+type Routers struct {
+	ID         uint32    `json:"id"`
+	Path       string    `json:"path"`
+	Method     string    `json:"method"`
+	Del        uint16    `json:"del"`
+	Createtime time.Time `json:"createtime"`
+	Updatetime time.Time `json:"updatetime"`
+}
+

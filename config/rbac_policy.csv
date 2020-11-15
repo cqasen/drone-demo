@@ -10,5 +10,6 @@ p, anonymous, /login, GET
 p, anonymous, /search, GET
 p, anonymous, /push*, GET
 p, anonymous, /poetry/*, GET
+p, anonymous, /route/push, GET
 
 g, quyuan, admin
