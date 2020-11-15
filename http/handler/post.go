@@ -20,7 +20,7 @@ import (
 //获取单条
 func GetPost(ctx *gin.Context) {
 	id, _ := strconv.Atoi(ctx.Param("id"))
-	post, err := dao.Post(app.DB()).Get(int32(id))
+	post, err := dao.NewPost(app.DB()).Get(int32(id))
 	if err != nil {
 		panic(errors.NotFound("404 Not Found"))
 	}
@@ -29,7 +29,7 @@ func GetPost(ctx *gin.Context) {
 
 //获取列表
 func GetPostList(ctx *gin.Context) {
-	post, err := dao.Post(app.DB()).GetList()
+	post, err := dao.NewPost(app.DB()).GetList()
 	if err != nil {
 		panic(errors.NotFound("404 Not Found"))
 	}
@@ -39,7 +39,7 @@ func GetPostList(ctx *gin.Context) {
 //单个推送
 func PushPost(ctx *gin.Context) {
 	id, _ := strconv.Atoi(ctx.Param("id"))
-	post, err := dao.Post(app.DB()).Get(int32(id))
+	post, err := dao.NewPost(app.DB()).Get(int32(id))
 	if err != nil {
 		panic(errors.NotFound("404 Not Found"))
 	}
@@ -55,7 +55,7 @@ func PushPost(ctx *gin.Context) {
 
 //批量推送
 func PushPostList(ctx *gin.Context) {
-	postList, err := dao.Post(app.DB()).GetList()
+	postList, err := dao.NewPost(app.DB()).GetList()
 	if err != nil {
 		panic(errors.NotFound("404 Not Found"))
 	}

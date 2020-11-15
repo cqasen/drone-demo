@@ -10,7 +10,7 @@ type PostDao struct {
 	Dao
 }
 
-func Post(db *gorm.DB) *PostDao {
+func NewPost(db *gorm.DB) *PostDao {
 	return &PostDao{Dao{db: db}}
 }
 

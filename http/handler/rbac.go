@@ -7,8 +7,8 @@ import (
 	"github.com/ebar-go/ego/http/response"
 	"github.com/ebar-go/egu"
 	"github.com/gin-gonic/gin"
-	"log"
 	"regexp"
+	"strconv"
 	"time"
 )
 
@@ -39,25 +39,23 @@ func PushRoute(ctx *gin.Context) {
 	}
 }
 
-//
+//授权
 func SetJurisdiction(ctx *gin.Context) {
+	id, _ := strconv.Atoi(ctx.Query("id"))
 	db := dao.NewRoute(app.DB())
 	e := middleware.GetEnforcer()
-	var id []int
-	id = append(id, 10)
-	id = append(id, 3)
-
-	res := db.GetById(id)
+	var ids []int
+	ids = append(ids, id)
+	res := db.GetById(ids)
 	p := "anonymous"
-
+	var rules [][]string
 	for _, val := range res {
-		log.Println(val)
-		state, err := e.AddPolicy(p, val.Path, val.Method)
-		egu.SecurePanic(err)
-		log.Println(state)
+		rules = append(rules, []string{p, val.Path, val.Method})
 	}
-	log.Println(p)
-	log.Println(res)
+	if len(rules) > 0 {
+		_, err := e.AddPolicies(rules)
+		egu.SecurePanic(err)
+	}
 	egu.SecurePanic(e.SavePolicy())
 	response.WrapContext(ctx).Success(res)
 }

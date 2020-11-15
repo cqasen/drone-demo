@@ -17,15 +17,12 @@ var enforcer *casbin.Enforcer
 
 func init() {
 	log.Printf("加载配置权限")
-
 	dns := fmt.Sprintf("%s:%s@tcp(%s)/",
 		"root",
 		"cqasen@qq.com",
 		net.JoinHostPort("111.229.103.26", strconv.Itoa(13306)))
 	log.Printf(dns)
-	//a, err := gormadapter.NewAdapter("mysql", dns, false)
-	//secure.FatalError("加载数据库权限配置错误", err)
-	//e, err := casbin.NewEnforcer("./config/rbac_model.conf", a)
+
 	//读取csv
 	//e, err := casbin.NewEnforcer("./config/rbac_model.conf", "./config/rbac_policy.csv")
 	//egu.FatalError("加载权限配置", err)
@@ -34,6 +31,7 @@ func init() {
 	a, _ := gormadapter.NewAdapter("mysql", dns, "zblog")
 	e, _ := casbin.NewEnforcer("./config/rbac_model.conf", a)
 	//从DB加载策略
+	e.EnableLog(true)
 	err := e.LoadPolicy()
 	egu.FatalError("加载权限配置", err)
 	enforcer = e
@@ -41,12 +39,6 @@ func init() {
 
 func CheckPermission(ctx *gin.Context) {
 	role := "anonymous"
-	//log.Printf("配置加载")
-	//enforcer, err := casbin.NewEnforcer("./config/rbac_model.conf", "./config/rbac_policy.csv")
-	//if err != nil {
-	//	log.Fatalf("配置加载错误:%s\n", err.Error())
-	//}
-
 	result, err := enforcer.Enforce(role, ctx.Request.URL.Path, ctx.Request.Method)
 
 	if err != nil {
