@@ -37,11 +37,19 @@ func Load(route *gin.Engine) {
 	route.GET("/push", handler.PushPostList)
 	route.GET("/push/:id", handler.PushPost)
 
-	post1 := route.Group("/user-info").Use(middleware.JWT(&data.UseClaims{}))
+	user := route.Group("/user").Use(middleware.JWT(&data.UseClaims{}))
 	{
-		post1.GET("", handler.GetInfo)
+		user.GET("/info", handler.GetInfo)
 	}
 	route.GET("/route/push", handler.PushRoute)
 	route.GET("/quanxian", handler.SetJurisdiction)
+
+	role := route.Group("/role")
+	{
+		role.GET("/add", handler.AddRoleForUser)
+		role.GET("/del", handler.DeleteRoleForUser)
+		role.GET("/list", handler.ListRole)
+		role.GET("/get", handler.GetRole)
+	}
 	handler.InitRoute(route)
 }
