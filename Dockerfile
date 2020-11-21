@@ -1,5 +1,5 @@
 ## 编译镜像
-FROM golang:1.12  AS builder
+FROM golang:1.12 AS builder
 ENV GO111MODULE=on
 ENV CGO_ENABLED 0
 ENV GOOS=linux
