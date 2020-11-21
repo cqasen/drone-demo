@@ -4,12 +4,13 @@ import (
 	"fmt"
 	"github.com/casbin/casbin/v2"
 	gormadapter "github.com/casbin/gorm-adapter/v3"
-	"github.com/ebar-go/ego/http/response"
+	"github.com/ebar-go/ego/errors"
 	"github.com/ebar-go/egu"
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
 	"log"
 	"net"
+	"net/http"
 	"strconv"
 )
 
@@ -43,25 +44,21 @@ func CheckPermission(ctx *gin.Context) {
 	log.Println(fmt.Sprintf("用户:%s 角色：%s", "demo1", roles))
 	role := "anonymous"
 	if len(roles) == 0 {
-		msg := fmt.Sprintf("用户:%s 未设置角色", user)
-		response.WrapContext(ctx).Error(403, msg)
 		ctx.Abort()
-		return
+		panic(errors.New(http.StatusForbidden, fmt.Sprintf("用户:%s 未设置角色", user)))
 	}
 	role = roles[0]
 	result, err := enforcer.Enforce(role, ctx.Request.URL.Path, ctx.Request.Method)
 
 	if err != nil {
 		log.Printf("权限加载错误:%s\n", err.Error())
-		response.WrapContext(ctx).Error(500, err.Error())
 		ctx.Abort()
-		return
+		panic(errors.New(http.StatusInternalServerError, err.Error()))
 	}
 	if !result {
 		log.Println(fmt.Sprintf("角色：%s 没有请求%s,%s的权限\n", role, ctx.Request.URL.Path, ctx.Request.Method))
-		response.WrapContext(ctx).Error(401, "Unauthorized您无权查看此目录或页面")
 		ctx.Abort()
-		return
+		panic(errors.New(http.StatusUnauthorized, "Unauthorized您无权查看此目录或页面"))
 	}
 	ctx.Next()
 }

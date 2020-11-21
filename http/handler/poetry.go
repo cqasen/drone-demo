@@ -3,6 +3,7 @@ package handler
 import (
 	"context"
 	"github.com/cqasen/gin-demo/pkg/app"
+	"github.com/ebar-go/ego/errors"
 	"github.com/ebar-go/ego/http/pagination"
 	"github.com/ebar-go/ego/http/response"
 	"github.com/ebar-go/egu"
@@ -10,6 +11,7 @@ import (
 	"github.com/olivere/elastic/v7"
 	"io/ioutil"
 	"log"
+	"net/http"
 	"os"
 	"reflect"
 	"strconv"
@@ -52,12 +54,9 @@ func PushPoetry(ctx *gin.Context) {
 	}
 
 	bulkResponse, err := bulkRequest.Do(context.Background())
-	if err != nil {
-		log.Println(err)
-	}
+	egu.SecurePanic(err)
 	log.Println("耗时：", bulkResponse.Took, "索引了：", len(bulkResponse.Items))
 	response.WrapContext(ctx).Success("ok")
-
 }
 
 //搜索
@@ -89,13 +88,10 @@ func SearchPoetry(ctx *gin.Context) {
 		Timeout("10ms").
 		Do(context.Background())
 
-	if err != nil {
+	egu.SecurePanic(err)
+	if searchRes == nil {
 		ctx.Abort()
-		response.WrapContext(ctx).Error(1, err.Error())
-	}
-	if searchRes != nil {
-		ctx.Abort()
-		response.WrapContext(ctx).Error(1, "请求失败")
+		panic(errors.New(http.StatusInternalServerError, "请求失败"))
 	}
 	var poetryItem PoetryItem
 	var poetryList []PoetryItem

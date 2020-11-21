@@ -13,6 +13,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/olivere/elastic/v7"
 	"log"
+	"net/http"
 	"reflect"
 	"strconv"
 )
@@ -67,9 +68,7 @@ func PushPostList(ctx *gin.Context) {
 		bulkRequest.Add(req)
 	}
 	bulkResponse, err := bulkRequest.Do(context.Background())
-	if err != nil {
-		log.Println(err)
-	}
+	egu.SecurePanic(err)
 	log.Println("耗时：", bulkResponse.Took, "索引了：", len(bulkResponse.Items))
 	response.WrapContext(ctx).Success(postList)
 }
@@ -100,9 +99,11 @@ func SearchPost(ctx *gin.Context) {
 		Timeout("10ms").
 		FetchSourceContext(fetchSourceContext).
 		Do(context.Background())
-	if err != nil || searchRes != nil {
+	egu.SecurePanic(err)
+	if searchRes == nil {
 		ctx.Abort()
-		response.WrapContext(ctx).Error(1, err.Error())
+		//response.WrapContext(ctx).Error(1, "请求失败")
+		panic(errors.New(http.StatusInternalServerError, "请求失败"))
 	}
 	var post entity.ZbpPost
 	var postList []entity.ZbpPost
@@ -111,6 +112,6 @@ func SearchPost(ctx *gin.Context) {
 		postList = append(postList, t)
 	}
 
-	pagination := pagination2.Paginate(int(searchRes.Hits.TotalHits.Value), page, pageSize)
-	response.WrapContext(ctx).Paginate(postList, &pagination)
+	paging := pagination2.Paginate(int(searchRes.Hits.TotalHits.Value), page, pageSize)
+	response.WrapContext(ctx).Paginate(postList, &paging)
 }

@@ -27,8 +27,6 @@ func Login(ctx *gin.Context) {
 		egu.SecurePanic(errors.New(-1, err.Error()))
 	}
 	res, err := service.User().Auth(req)
-	if err != nil {
-		egu.SecurePanic(err)
-	}
+	egu.SecurePanic(err)
 	response.WrapContext(ctx).Success(res)
 }
