@@ -78,10 +78,10 @@ func PushPostList(ctx *gin.Context) {
 func SearchPost(ctx *gin.Context) {
 	word := ctx.Query("word")
 	page, _ := strconv.Atoi(ctx.DefaultQuery("page", "1"))
-	page_size, _ := strconv.Atoi(ctx.DefaultQuery("page_size", "10"))
-	from := (page - 1) * page_size
+	pageSize, _ := strconv.Atoi(ctx.DefaultQuery("page_size", "10"))
+	from := (page - 1) * pageSize
 
-	log.Println(word, page, page_size)
+	log.Println(word, page, pageSize)
 
 	client := app2.Elasticsearch()
 	query := elastic.NewBoolQuery()
@@ -96,11 +96,11 @@ func SearchPost(ctx *gin.Context) {
 		Index("post_v1").
 		Query(query).
 		From(from).
-		Size(page_size).
+		Size(pageSize).
 		Timeout("10ms").
 		FetchSourceContext(fetchSourceContext).
 		Do(context.Background())
-	if err != nil {
+	if err != nil || searchRes != nil {
 		ctx.Abort()
 		response.WrapContext(ctx).Error(1, err.Error())
 	}
@@ -111,6 +111,6 @@ func SearchPost(ctx *gin.Context) {
 		postList = append(postList, t)
 	}
 
-	pagination := pagination2.Paginate(int(searchRes.Hits.TotalHits.Value), page, page_size)
+	pagination := pagination2.Paginate(int(searchRes.Hits.TotalHits.Value), page, pageSize)
 	response.WrapContext(ctx).Paginate(postList, &pagination)
 }

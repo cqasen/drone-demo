@@ -15,7 +15,7 @@ func User(db *gorm.DB) *UserDao {
 
 func (dao UserDao) Get(name string) (*entity.ZbpMember, error) {
 	member := new(entity.ZbpMember)
-	query := dao.db.Table(entity.TABLE_MEMBER).Where(entity.ZbpMember{
+	query := dao.db.Table(entity.TableMember).Where(entity.ZbpMember{
 		MemName: name,
 	}).Debug().First(&member)
 	if err := query.Error; err != nil {

@@ -5,7 +5,7 @@ import (
 	"log"
 )
 
-const ELASTICSEARCH_CONFIG_KEY = "elasticsearch"
+const ElasticsearchConfigKey = "elasticsearch"
 
 type elasticsearch struct {
 	Url      string
@@ -16,7 +16,7 @@ type elasticsearch struct {
 
 func InitElasticsearch() *elasticsearch {
 	conf := new(elasticsearch)
-	err := app.Config().Viper.UnmarshalKey(ELASTICSEARCH_CONFIG_KEY, &conf)
+	err := app.Config().Viper.UnmarshalKey(ElasticsearchConfigKey, &conf)
 	if err != nil {
 		log.Fatalf("Elasticsearch Config Error:%s", err.Error())
 		return conf

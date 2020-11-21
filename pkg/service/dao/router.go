@@ -20,7 +20,7 @@ func (dao RouteDao) Save(route entity.Routers) entity.Routers {
 
 func (dao RouteDao) GetOne(path string, method string) entity.Routers {
 	var route entity.Routers
-	dao.db.Table(entity.TABLE_ROUTERS).
+	dao.db.Table(entity.TableRouters).
 		Where(entity.Routers{Path: path, Method: method}).
 		First(&route)
 	return route
@@ -28,10 +28,10 @@ func (dao RouteDao) GetOne(path string, method string) entity.Routers {
 
 func (dao RouteDao) GetById(ids []int) []entity.Routers {
 	var route []entity.Routers
-	dao.db.Table(entity.TABLE_ROUTERS).Debug().Where("id in (?)", ids).Scan(&route)
+	dao.db.Table(entity.TableRouters).Debug().Where("id in (?)", ids).Scan(&route)
 	return route
 }
 
 func (dao RouteDao) SetDelFlag() {
-	dao.db.Table(entity.TABLE_ROUTERS).Debug().Where("del = ?", 0).Update("del", 1)
+	dao.db.Table(entity.TableRouters).Debug().Where("del = ?", 0).Update("del", 1)
 }

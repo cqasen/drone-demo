@@ -3,15 +3,15 @@ package entity
 import "time"
 
 const (
-	TABLE_CATEGORY = "zbp_category"
-	TABLE_COMMENT  = "zbp_comment"
-	TABLE_CONFIG   = "zbp_config"
-	TABLE_MEMBER   = "zbp_member"
-	TABLE_MODULE   = "zbp_module"
-	TABLE_POST     = "zbp_post"
-	TABLE_TAG      = "zbp_tag"
-	TABLE_UPLOAD   = "zbp_upload"
-	TABLE_ROUTERS  = "routers"
+	TableCategory = "zbp_category"
+	TableComment  = "zbp_comment"
+	TableConfig   = "zbp_config"
+	TableMember   = "zbp_member"
+	TableModule   = "zbp_module"
+	TablePost     = "zbp_post"
+	TableTag      = "zbp_tag"
+	TableUpload   = "zbp_upload"
+	TableRouters  = "routers"
 )
 
 // ZbpCategory ...
@@ -31,7 +31,7 @@ type ZbpCategory struct {
 }
 
 func (ZbpCategory) TableName() string {
-	return TABLE_CATEGORY
+	return TableCategory
 }
 
 // ZbpComment ...
@@ -53,7 +53,7 @@ type ZbpComment struct {
 }
 
 func (ZbpComment) TableName() string {
-	return TABLE_COMMENT
+	return TableComment
 }
 
 // ZbpConfig ...
@@ -64,7 +64,7 @@ type ZbpConfig struct {
 }
 
 func (ZbpConfig) TableName() string {
-	return TABLE_CONFIG
+	return TableConfig
 }
 
 // ZbpMember ...
@@ -90,7 +90,7 @@ type ZbpMember struct {
 }
 
 func (ZbpMember) TableName() string {
-	return TABLE_MEMBER
+	return TableMember
 }
 
 // ZbpModule ...
@@ -109,7 +109,7 @@ type ZbpModule struct {
 }
 
 func (ZbpModule) TableName() string {
-	return TABLE_MODULE
+	return TableModule
 }
 
 // ZbpPost ...
@@ -134,7 +134,7 @@ type ZbpPost struct {
 }
 
 func (ZbpPost) TableName() string {
-	return TABLE_POST
+	return TablePost
 }
 
 // ZbpTag ...
@@ -151,7 +151,7 @@ type ZbpTag struct {
 }
 
 func (ZbpTag) TableName() string {
-	return TABLE_TAG
+	return TableTag
 }
 
 // ZbpUpload ...
@@ -170,7 +170,7 @@ type ZbpUpload struct {
 }
 
 func (ZbpUpload) TableName() string {
-	return TABLE_UPLOAD
+	return TableUpload
 }
 
 type Routers struct {

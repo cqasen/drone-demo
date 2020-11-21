@@ -93,7 +93,7 @@ func SearchPoetry(ctx *gin.Context) {
 		ctx.Abort()
 		response.WrapContext(ctx).Error(1, err.Error())
 	}
-	if searchRes == nil {
+	if searchRes != nil {
 		ctx.Abort()
 		response.WrapContext(ctx).Error(1, "请求失败")
 	}
@@ -104,6 +104,6 @@ func SearchPoetry(ctx *gin.Context) {
 		poetryList = append(poetryList, t)
 	}
 
-	pagination := pagination.Paginate(int(searchRes.Hits.TotalHits.Value), page, pageSize)
-	response.WrapContext(ctx).Paginate(poetryList, &pagination)
+	paging := pagination.Paginate(int(searchRes.Hits.TotalHits.Value), page, pageSize)
+	response.WrapContext(ctx).Paginate(poetryList, &paging)
 }

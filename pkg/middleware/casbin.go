@@ -31,7 +31,7 @@ func init() {
 	a, _ := gormadapter.NewAdapter("mysql", dns, "zblog")
 	e, _ := casbin.NewEnforcer("./config/rbac_model.conf", a)
 	//从DB加载策略
-	e.EnableLog(true)
+	//e.EnableLog(true)
 	err := e.LoadPolicy()
 	egu.FatalError("加载权限配置", err)
 	enforcer = e
