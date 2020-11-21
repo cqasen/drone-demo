@@ -46,19 +46,16 @@ jobs:
             sudo su
             ls -al
             pwd
-            sudo su
-            ls -al
-            pwd
             echo ${{ secrets.DOCKER_REPOSITORY }}
             # 停止旧版容器
-            docker stop $(docker ps --filter ancestor=${{ secrets.DOCKER_REPOSITORY }}:latest -q)
+            sudo docker stop $(docker ps --filter ancestor=${{ secrets.DOCKER_REPOSITORY }}:latest -q)
             # 删除旧版容器
-            docker rm -f $(docker ps -a --filter ancestor=${{ secrets.DOCKER_REPOSITORY }}:latest -q)
+            sudo docker rm -f $(docker ps -a --filter ancestor=${{ secrets.DOCKER_REPOSITORY }}:latest -q)
             # 删除旧版镜像
-            docker rmi -f $(docker images ${{ secrets.DOCKER_REPOSITORY }}:latest -q)
-            # 登录阿里云镜像服务器
-            docker login --username=${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_PASSWORD }}
+            sudo docker rmi -f $(docker images ${{ secrets.DOCKER_REPOSITORY }}:latest -q)
+            # 登录镜像服务器
+            sudo docker login --username=${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_PASSWORD }}
             # 拉取最新latest版本镜像
-            docker pull ${{ secrets.DOCKER_REPOSITORY }}:latest
+            sudo docker pull ${{ secrets.DOCKER_REPOSITORY }}:latest
             # 运行最新latest版本镜像
-            docker run -d -p 8088:8088 ${{ secrets.DOCKER_REPOSITORY }}:latest
+            sudo docker run -d -p 8088:8088 ${{ secrets.DOCKER_REPOSITORY }}:latest
