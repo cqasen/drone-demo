@@ -3,7 +3,7 @@ FROM golang:1.13-alpine  AS builder
 ENV GO111MODULE=on
 ENV CGO_ENABLED 0
 ENV GOOS=linux
-ENV GOPROXY="https://mirrors.aliyun.com/goproxy/"
+ENV GOPROXY="https://goproxy.io"
 
 WORKDIR /go/cache
 
