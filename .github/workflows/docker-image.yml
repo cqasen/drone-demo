@@ -43,10 +43,10 @@ jobs:
           key: ${{ secrets.HOST_KEY }} # 服务器登录密码
           port: ${{ secrets.HOST_PORT }} # 服务器ssh端口
           script: |
-            sudo su -
+            sudo su
             ls -al
             pwd
-            sudo su -
+            sudo su
             ls -al
             pwd
             echo ${{ secrets.DOCKER_REPOSITORY }}
