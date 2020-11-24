@@ -3,7 +3,7 @@ package dao
 import (
 	"fmt"
 	"github.com/cqasen/gin-demo/pkg/service/entity"
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
 type PostDao struct {
