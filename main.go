@@ -2,16 +2,17 @@ package main
 
 import (
 	"fmt"
+	"log"
+
 	"github.com/cqasen/gin-demo/http/route"
 	app2 "github.com/cqasen/gin-demo/pkg/app"
 	"github.com/cqasen/gin-demo/pkg/config"
 	"github.com/cqasen/gin-demo/task"
+	
 	"github.com/ebar-go/ego"
 	"github.com/ebar-go/ego/app"
 	"github.com/ebar-go/ego/component/event"
 	"github.com/ebar-go/egu"
-
-	"log"
 )
 
 func init() {
