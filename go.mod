@@ -5,10 +5,10 @@ go 1.13
 require (
 	github.com/aliyun/aliyun-mns-go-sdk v0.0.0-20191205082232-b251b9d95415 // indirect
 	github.com/casbin/casbin v1.9.1
-	github.com/casbin/casbin/v2 v2.8.6
+	github.com/casbin/casbin/v2 v2.12.0
 	github.com/casbin/gorm-adapter v1.0.0 // indirect
 	github.com/casbin/gorm-adapter/v2 v2.1.0
-	github.com/casbin/gorm-adapter/v3 v3.0.3
+	github.com/casbin/gorm-adapter/v3 v3.0.4
 	github.com/coreos/go-systemd v0.0.0-20191104093116-d3cd4ed1dbcf // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/ebar-go/ego v0.9.15
