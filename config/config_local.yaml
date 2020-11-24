@@ -1,12 +1,16 @@
 server: # 服务器配置
+  environment: local
   httpPort: 8088  # 端口号
   systemName: gin-demo # 系统名称
   maxResponseLogSize: 2000 # 响应内容截取长度
-  logPath: /wwwlogs/ # 日志目录
+  logPath: /wwwlogs/app.log # 日志文件
   traceHeader: gateway-trace # trace头
   httpRequestTimeout: 3 # http请求超时时间，单位：秒
-  jwtSign: gin-demo  # jwt的签名
-  debug: true
+  jwtSign: gin-demo-sign  # jwt的签名
+  debug: off # 日志debug
+  pprof: on
+  task: on
+  swagger: off
 
 mysql:    # mysql配置。支持多数据库，读写分离
   maxIdleConnections: 10  # 最大空闲连接数
