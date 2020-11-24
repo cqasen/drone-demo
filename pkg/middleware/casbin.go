@@ -22,7 +22,6 @@ func init() {
 		"root",
 		"cqasen@qq.com",
 		net.JoinHostPort("111.229.103.26", strconv.Itoa(13306)))
-	//log.Printf(dns)
 
 	//读取csv
 	//e, err := casbin.NewEnforcer("./config/rbac_model.conf", "./config/rbac_policy.csv")
