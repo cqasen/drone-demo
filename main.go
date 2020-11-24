@@ -5,6 +5,7 @@ import (
 	"github.com/cqasen/gin-demo/http/route"
 	app2 "github.com/cqasen/gin-demo/pkg/app"
 	"github.com/cqasen/gin-demo/pkg/config"
+	"github.com/cqasen/gin-demo/task"
 	"github.com/ebar-go/ego"
 	"github.com/ebar-go/ego/app"
 	"github.com/ebar-go/ego/component/event"
@@ -39,6 +40,9 @@ func main() {
 	server := ego.HttpServer()
 	//加载路由
 	route.Load(server.Router)
+	//定时任务
+	task.Load()
+
 	//启动服务
 	egu.SecurePanic(server.Start())
 }
