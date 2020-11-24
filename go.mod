@@ -11,7 +11,7 @@ require (
 	github.com/casbin/gorm-adapter/v3 v3.0.4
 	github.com/coreos/go-systemd v0.0.0-20191104093116-d3cd4ed1dbcf // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
-	github.com/ebar-go/ego v0.9.15
+	github.com/ebar-go/ego v0.9.16
 	github.com/ebar-go/egu v0.1.1
 	github.com/ebar-go/event v0.2.0
 	github.com/ebar-go/ws v0.1.0 // indirect
