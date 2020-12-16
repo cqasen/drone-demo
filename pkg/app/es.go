@@ -15,13 +15,15 @@ func InitElasticsearch() error {
 	traceLog := log.New(os.Stdout, "Trace ", log.LstdFlags)
 
 	conf := config.InitElasticsearch()
+	retrier := elastic.NewBackoffRetrier(elastic.NewSimpleBackoff(0, 50, 200, 500, 1000, 2000, 4000, 8000))
 	client, err := elastic.NewClient(
 		elastic.SetURL(conf.Url),
 		elastic.SetBasicAuth(conf.Username, conf.Password),
 		elastic.SetSniff(conf.Sniff),
 		elastic.SetInfoLog(infolog),
 		elastic.SetErrorLog(errorlog),
-		elastic.SetTraceLog(traceLog))
+		elastic.SetTraceLog(traceLog),
+		elastic.SetRetrier(retrier))
 
 	if err != nil {
 		log.Println("Elasticsearch Connect Error:" + err.Error())
