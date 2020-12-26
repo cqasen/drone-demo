@@ -43,6 +43,7 @@ jobs:
           key: ${{ secrets.HOST_KEY }} # 服务器登录密码
           port: ${{ secrets.HOST_PORT }} # 服务器ssh端口
           script: |
+            pwd
             ls -al
             pwd
             # 停止旧版容器
