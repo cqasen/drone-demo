@@ -14,7 +14,7 @@ func Load(route *gin.Engine) {
 	route.Use(middleware.RequestLog)
 	route.Use(middleware.Recover)
 	route.Use(middleware.Favicon)
-	route.Use(middleware2.CheckPermission)
+	//route.Use(middleware2.CheckPermission)
 	//资源
 	route.StaticFile("favicon.ico", "./resources/favicon.ico")
 	//路由
@@ -44,7 +44,7 @@ func Load(route *gin.Engine) {
 	route.GET("/route/push", handler.PushRoute)
 	route.GET("/quanxian", handler.SetJurisdiction)
 
-	role := route.Group("/role")
+	role := route.Group("/role", middleware2.CheckPermission)
 	{
 		role.GET("/add", handler.AddRoleForUser)
 		role.GET("/del", handler.DeleteRoleForUser)
