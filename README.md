@@ -98,7 +98,7 @@ PUT _template/my_poetry_template
       },
       "timestamp": {
         "type": "date"
-      }
+      }~~~~
     }
   },
   "aliases": {
