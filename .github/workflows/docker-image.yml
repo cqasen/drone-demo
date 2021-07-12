@@ -42,14 +42,10 @@ jobs:
             pwd
             ls -al
             pwd
-            container_id = docker ps -a --filter name=www_gin -q
-            echo ${container_id}
-            if [ -n ${container_id} ];then
-              # 停止旧版容器
-              sudo docker stop -t 10 ${container_id}
-              # 删除旧版容器
-              sudo docker rm -f ${container_id}
-            fi
+            # 停止旧版容器
+            sudo docker ps -a --filter name=www_gin -q|sudo xargs docker stop
+            # 删除旧版容器
+            sudo docker ps -a --filter name=www_gin -q|sudo xargs docker rm
             # 登录镜像服务器
             sudo docker login --username=${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_PASSWORD }}
             # 拉取最新latest版本镜像
