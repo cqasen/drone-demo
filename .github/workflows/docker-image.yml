@@ -1,5 +1,4 @@
 name: Docker Image CI
-
 on:
   push:
     branches: [release]
@@ -7,11 +6,8 @@ on:
     branches: [release]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v1
 
@@ -47,11 +43,12 @@ jobs:
             ls -al
             pwd
             # 停止旧版容器
-            sudo docker stop $(docker ps --filter name=www_gin -q)
-            # 删除旧版容器
-            sudo docker rm -f $(docker ps -a --filter name=www_gin -q)
-            # 删除旧版镜像
-            # sudo docker rmi -f $(docker images ${{ secrets.DOCKER_REPOSITORY }}:latest -q)
+            container_id = docker ps -a --filter name=www_gin -q
+            if [ -n ${container_id} ];then
+              sudo docker stop ${container_id}
+              # 删除旧版容器
+              sudo docker rm -f ${container_id}
+            fi
             # 登录镜像服务器
             sudo docker login --username=${{ secrets.DOCKER_USERNAME }} --password ${{ secrets.DOCKER_PASSWORD }}
             # 拉取最新latest版本镜像
