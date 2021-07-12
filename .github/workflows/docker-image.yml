@@ -44,8 +44,9 @@ jobs:
             pwd
             # 停止旧版容器
             container_id = docker ps -a --filter name=www_gin -q
+            echo ${container_id}
             if [ -n ${container_id} ];then
-              sudo docker stop ${container_id}
+              sudo docker stop -v ${container_id}
               # 删除旧版容器
               sudo docker rm -f ${container_id}
             fi
@@ -56,4 +57,4 @@ jobs:
             # 运行最新latest版本镜像
             sudo docker run -d --name www_gin --net tx -p 8088:8088 ${{ secrets.DOCKER_REPOSITORY }}:latest
             # 删除废弃的images
-            sudo docker rmi $(docker images | grep "<none>" | awk '{print $3}')
+            sudo docker rmi -v $(sudo docker images | grep "<none>" | awk '{print $3}')
