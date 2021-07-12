@@ -47,9 +47,9 @@ jobs:
             ls -al
             pwd
             # 停止旧版容器
-            sudo docker stop $(docker ps --filter ancestor=${{ secrets.DOCKER_REPOSITORY }}:latest -q)
+            sudo docker stop $(docker ps --filter name=www_gin -q)
             # 删除旧版容器
-            sudo docker rm -f $(docker ps -a --filter ancestor=${{ secrets.DOCKER_REPOSITORY }}:latest -q)
+            sudo docker rm -f $(docker ps -a --filter name=www_gin -q)
             # 删除旧版镜像
             sudo docker rmi -f $(docker images ${{ secrets.DOCKER_REPOSITORY }}:latest -q)
             # 登录镜像服务器
