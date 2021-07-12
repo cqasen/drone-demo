@@ -7,7 +7,7 @@ import (
 
 func IndexHandler(ctx *gin.Context) {
 	data := response.Data{
-		"tips": "Hello World!",
+		"tips": "Hello World!!!",
 	}
 	response.WrapContext(ctx).Success(data)
 }
