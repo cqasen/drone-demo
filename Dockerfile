@@ -1,5 +1,5 @@
 # build
-FROM golang:1.13-alpine
+FROM golang:1.15-alpine
 
 ARG app_env
 ENV APP_ENV $app_env
@@ -10,5 +10,5 @@ COPY . .
 # set go mod proxy
 ENV GO111MODULE=on
 ENV GOPROXY=https://mirrors.aliyun.com/goproxy/
-#RUN go mod download
+RUN go mod download
 CMD ["go","run","main.go"]
